@@ -2,15 +2,137 @@
   text-align: center;
 }
 
+.container {
+  height: 95vh;
+  background-color:  #f9d9ca;
+  align-items: space-around;
+  flex-direction: column;
+  display: flex;
+}
+
+.moniter {
+  height: 15%;
+  background-color: #a2dff0;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: row;
+  display: flex;
+}
+
+.moni_name {
+  height: 80%;
+  width: 15%;
+  background-color: green;
+  align-items: center;
+  text-align: center;
+  display: flex;
+}
+
+.moni_status {
+  height: 80%;
+  width: 25%;
+  background-color: coral;
+  outline: black;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  flex-direction: row;
+}
+
+.moni_setting {
+  height: 80%;
+  width: 10%;
+  background-color: gray;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.visual_block {
+  height: 85%;
+  background-color: cadetblue;
+  align-items: center;
+  flex-direction: row;
+  display: flex;
+}
+
+.house {
+  height: 100%;
+  width: 85%;
+  background-color: black;
+  align-items: center;
+  flex-direction: row;
+  display: flex;
+}
+
+.interaction {
+  height: 100%;
+  width: 15%;
+  background-color: white;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  display: flex;
+}
+
+.int_icon {
+  height: 20%;
+  width: 90%;
+  background-color: pink;
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+}
+
+.int_choose {
+  height: 10%;
+  width: 90%;
+  background-color: pink;
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+}
+
+.set_data {
+  height: 70%;
+  width: 90%;
+  background-color: pink;
+  align-items: center;
+  flex-direction: row;
+  display: flex;
+}
+
+.set_property {
+  height: 100%;
+  width: 70%;
+  background-color: black;
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+}
+
+.set_user_icon {
+  height: 14vmin;
+  width: 14vmin;
+}
+
+.set_user_word {
+  height: 14vmin;
+  width: 75%;
+  background-color: skyblue;
+  align-items: center;
+}
+
+.set_property_icon {
+  height: 14vmin;
+  width: 14vmin;
+}
+
+
+/*-----------------------------------------------------------*/
 .App-logo {
   height: 40vmin;
   pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
 }
 
 .App-header {

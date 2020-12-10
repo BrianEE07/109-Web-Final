@@ -1,7 +1,7 @@
 import './App.css'
 import React, { useEffect, useRef, useState } from 'react'
 var x = "food"
-var mode = "play"
+var mode = "setting"
 
 const container_swi = (mode) => {
   switch (mode) {
@@ -42,9 +42,9 @@ const container_swi = (mode) => {
           </div>
           <div class="set_mute">
             <img class="set_mute_icon"/>
-            <input class="set_mute_button"/>
+            <input class="set_mute_button" type="checkbox"/>
           </div>
-          <button></button>
+          <button class="set_logout">Log out</button>
         </>
       )
   }

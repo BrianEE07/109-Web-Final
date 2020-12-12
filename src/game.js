@@ -58,14 +58,17 @@ const container_swi = (mode) => {
             <img className="set_mute_icon" src="https://www.flaticon.com/svg/static/icons/svg/727/727240.svg"/>
             <input className="set_mute_button" type="checkbox"/>
           </div>
-          <Link to="/"><button classNameName="set_logout">
-                  Log out
-              </button>
-          </Link>
+          <div className="set_button_area">
+          <Link to="/">
+              <button classNameName="set_logout">Log out</button>
+            </Link>
+          <button className="set_back">back</button>
+          </div>
         </>
       )
-  }
-}
+      }}
+          
+
 
 const interaction_swi = (inter) => {
   switch (inter) {

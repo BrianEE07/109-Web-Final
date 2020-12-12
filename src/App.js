@@ -1,6 +1,7 @@
 import './App.css'
 import React, { useEffect, useRef, useState } from 'react'
-var x = "food"
+import meow from "./img/ahhmeow.jpg"
+var x = "menu"
 var mode = "setting"
 
 const container_swi = (mode) => {
@@ -11,11 +12,20 @@ const container_swi = (mode) => {
       return(
         <>
           <div class="moniter">
-            <div class="moni_name">name</div>
-            <div class="moni_status">happiness</div>
-            <div class="moni_status">health</div>
-            <div class="moni_status">hunger</div>
-            <div class="moni_setting">setting</div>
+            <div class="moni_name">QQㄋㄟㄋㄟ咩噗怪</div>
+            <div class="moni_status">
+              <img class="moni_status_icon" src="https://www.flaticon.com/svg/static/icons/svg/833/833472.svg"/>
+              <img class="moni_status_bar" src="https://www.flaticon.com/svg/static/icons/svg/40/40471.svg"/>
+            </div>
+            <div class="moni_status">
+              <img class="moni_status_icon" src="https://www.flaticon.com/svg/static/icons/svg/3721/3721710.svg"/>
+              <img class="moni_status_bar" src="https://www.flaticon.com/svg/static/icons/svg/40/40471.svg"/>
+            </div>
+            <div class="moni_status">
+              <img class="moni_status_icon" src="https://www.flaticon.com/svg/static/icons/svg/83/83410.svg"/>
+              <img class="moni_status_bar" src="https://www.flaticon.com/svg/static/icons/svg/40/40471.svg"/>
+            </div>
+            <img class="moni_setting" src="https://www.flaticon.com/svg/static/icons/svg/1242/1242392.svg"/>
           </div>
           <div class="visual_block">
             <div class="house">house</div>
@@ -30,18 +40,18 @@ const container_swi = (mode) => {
         <>
           <div class="set_data">
             <div class="set_property">
-              <img class="set_user_icon"/>
+              <img class="set_user_icon" src="https://www.flaticon.com/svg/static/icons/svg/64/64572.svg"/>
               <span class="set_user_word">user001</span>
-              <img class="set_property_icon"/>
+              <img class="set_property_icon" src="https://www.flaticon.com/svg/static/icons/svg/3039/3039367.svg"/>
               <ul class="set_property_list"></ul>
             </div>
             <div class="set_pet">
-              <img class="set_pet_pic"/>
-              <span class="set_pet_name">name</span>
+              <img class="set_pet_pic" src={meow}/>
+              <span class="set_pet_name">QQㄋㄟㄋㄟ咩噗怪</span>
             </div>
           </div>
           <div class="set_mute">
-            <img class="set_mute_icon"/>
+            <img class="set_mute_icon" src="https://www.flaticon.com/svg/static/icons/svg/727/727240.svg"/>
             <input class="set_mute_button" type="checkbox"/>
           </div>
           <button class="set_logout">Log out</button>
@@ -55,9 +65,9 @@ const interaction_swi = (inter) => {
     case 'menu':
       return(
         <>
-          <div class="int_icon">food</div>
-          <div class="int_icon">bath</div>
-          <div class="int_icon">play</div>
+          <img class="int_icon" src="https://www.flaticon.com/svg/static/icons/svg/3720/3720844.svg"/>
+          <img class="int_icon" src="https://www.flaticon.com/svg/static/icons/svg/2855/2855450.svg"/>
+          <img class="int_icon" src="https://www.flaticon.com/svg/static/icons/svg/808/808439.svg"/>
         </>
       )
     case 'food':

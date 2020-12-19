@@ -2,14 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-import App from "./App"
+import Login from "./login/login"
 import Game from "./game"
 
  const rootElement = document.getElementById("root");
  ReactDOM.render(
    <BrowserRouter>
     <Switch>
-     <Route exact path="/" component={App} />
+     <Route path="/login" component={Login} />
      <Route path="/game" component={Game} />
 
    </Switch>

@@ -6,9 +6,8 @@ import usersRouter from './routes/users.js';
 import cors from 'cors' 
 app.use(cors())
 
-
 import mongoose from 'mongoose' 
-import User from './models/user.js'
+import User from './models/userSchema.js'
 // require('dotenv-defaults').config();
 import dotenv from 'dotenv-defaults'
 dotenv.config()
@@ -44,7 +43,7 @@ db.once('open', () => {
     saveUser(55, "goose"); 
     app.listen(port, () =>
 // 把 Express server 放在這邊啟動 
-        console.log(`Example app listening on port ${port}!`)
+        console.log(`Web Final app listening on port ${port}!`)
  ); });
 
 
@@ -52,9 +51,10 @@ db.once('open', () => {
 import bodyParser from 'body-parser';
 // Parses the text as JSON and exposes the resulting // object on req.body.
 app.use(bodyParser.json());
+// app.use(express.json())
 app.use('/', homeRouter);
 app.use('/users', usersRouter);
 
 // app.listen(port, () =>
-//     console.log(`Example app listening on port ${port}!`),
+//     console.log(`Web Final is listening on port ${port}!`),
 // );

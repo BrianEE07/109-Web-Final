@@ -4,12 +4,14 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import Login from "./login/login"
 import Game from "./game"
+import SignUp from "./login/signup";
 
  const rootElement = document.getElementById("root");
  ReactDOM.render(
    <BrowserRouter>
     <Switch>
      <Route path="/login" component={Login} />
+     <Route path="/signup" component={SignUp} />
      <Route path="/game" component={Game} />
 
    </Switch>

@@ -13,7 +13,9 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Chicken from '../img/chicken.png';
-import checkUser from './axios'
+import { checkUser } from './axios';
+import { useHistory } from "react-router-dom";
+
 
 function Copyright() {
   return (
@@ -30,14 +32,13 @@ function Copyright() {
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(12),
+    marginTop: theme.spacing(8),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
     width: theme.spacing(8),
     height: theme.spacing(8),
   },
@@ -50,11 +51,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Login() {
+function Login() {
   const classes = useStyles();
   const [account, setAccount] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState({target: "", type: ""});
   const [isLogin, setIsLogin] = useState(false);
+  let history = useHistory();
 
   const handleAccountChange = (e) => {
     setAccount(e.target.value);
@@ -63,14 +66,46 @@ export default function Login() {
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   }
+
+  const handleError = () => {
+    if (account === "") {
+      setError({target: "account", type: "Required text."});
+    }
+    else if (password === "") {
+      setError({target: "password", type: "Required text."});
+    }
+    else return false;
+    return true;
+  }
+
+  const handleMsgError = (msg) => {
+    if (msg === "Account incorrect.") {
+      setError({target: "account", type: "Can't find account. If you don't have one, please sign up!!"});
+      // setAccount("");
+    }
+    else if (msg === "Password incorrect.") {
+      setError({target: "password", type: "Password incorrect."});
+      // setPassword("");
+    }
+    else return false;
+    return true;
+  }
+
+  const redirect = () => {
+    history.push("/game");
+  }
+
   const onSubmit = async () => {
+    if (handleError()) return;
     let msg = await checkUser({account, password});
+    if (handleMsgError(msg)) return;
+    else {
+      setError({target: "", type: ""});
+    }
     if (msg === "Login Successfully!!"){
         setIsLogin(true);
-        console.log("SSSSSUUUUUCCCCCCEEEEESSSSS!!!!!")
-    }
-    else{
-        console.log('login fail! : ' + msg);
+        console.log("Login SSSSSUUUUUCCCCCCEEEEESSSSS!!!!!");
+        redirect();
     }
   }
 
@@ -84,7 +119,22 @@ export default function Login() {
           Sign in
         </Typography>
         <form className={classes.form} noValidate>
-          <TextField
+          {(error.target === 'account')
+          ?<TextField
+            error
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            id="outlined-error-helper-text"
+            label="Account"
+            name="account"
+            autoComplete="account"
+            autoFocus
+            helperText={error.type}
+            value={account}
+            onChange={handleAccountChange}
+          />
+          :<TextField
             variant="outlined"
             margin="normal"
             // required
@@ -96,8 +146,23 @@ export default function Login() {
             autoFocus
             value={account}
             onChange={handleAccountChange}
+          />}
+          {(error.target === 'password')
+          ?<TextField
+            error
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            id="outlined-error-helper-text"
+            label="Password"
+            type="password"
+            name="password"
+            autoComplete="current-password"
+            helperText={error.type}
+            value={password}
+            onChange={handlePasswordChange}
           />
-          <TextField
+          :<TextField
             variant="outlined"
             margin="normal"
             // required
@@ -109,7 +174,7 @@ export default function Login() {
             autoComplete="current-password"
             value={password}
             onChange={handlePasswordChange}
-          />
+          />}
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
@@ -131,7 +196,7 @@ export default function Login() {
               </Link>
             </Grid>
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="/signup" variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>
@@ -145,3 +210,4 @@ export default function Login() {
   );
 }
 
+export default Login

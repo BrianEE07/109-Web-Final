@@ -59,8 +59,8 @@ const container_swi = (mode) => {
             <input className="set_mute_button" type="checkbox"/>
           </div>
           <div className="set_button_area">
-          <Link to="/">
-              <button classNameName="set_logout">Log out</button>
+          <Link to="/login">
+              <button className="set_logout">Log out</button>
             </Link>
           <button className="set_back">back</button>
           </div>

@@ -8,6 +8,7 @@
     "server": "nodemon server.js"
   },
   "dependencies": {
+    "@material-ui/lab": "^4.0.0-alpha.57",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "dotenv-defaults": "^2.0.1",

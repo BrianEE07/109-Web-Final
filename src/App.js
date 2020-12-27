@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import React, { useEffect, useRef, useState , Component} from 'react'
 
+
+
 const useStyles = () => {
     // un: { 
     //     width: "76%",
@@ -30,15 +32,31 @@ const useStyles = () => {
     // }
 }
 function App() {
+    const [aniImg, setAniImg] = useState(0)
+    /*const items = ["R", "E", "A", "C", "T"];
+    const { styles, play, isPlaying } = useAnimateGroup({
+      sequences: items.map(() => ({
+        start: { opacity: 1, transform: "translateX(0)" },
+        end: { opacity: 0, transform: "translateX(10px)" }
+      }))
+    });
+    console.log(styles);
 
 
+            {items.map((item, index) => (
+            <img src={stickman1} key={item} style={styles[index]} />
+          ))}
+    */
+   
     return(
-      <div>
+      <div className="container">
         <Input placeholder="username"></Input>
         <br></br>
         <Input placeholder="password">
         <br></br>
         </Input>
+
+
         <Link to="/game">
           <button> Login </button>
         </Link>

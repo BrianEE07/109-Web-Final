@@ -83,6 +83,37 @@
   display: flex;
 }
 
+.GG {
+  margin-left: 30%; 
+}
+
+.test_animation {
+  height: 50%;
+  width: 100%;
+  background-color: white;
+  align-items: center;
+  flex-direction: row;
+  display: flex;
+}
+
+.box {
+  display: block;
+  width: 100px;
+  height: 100px;
+  background: #27253f;
+  border-radius: 10px;
+  display: inline-block;
+  margin-right: 20px;
+}
+
+button {
+  display: block;
+  height: 30px;
+  width: 100px;
+  font-size: 15px;
+  margin-top: 20px;
+}
+
 .interaction {
   height: 100%;
   width: 15%;
@@ -100,6 +131,12 @@
   align-items: center;
   flex-direction: column;
   display: flex;
+  cursor:"pointer";
+}
+
+.int_icon :hover {
+  cursor:"hand";
+  opacity: 0;
 }
 
 .int_choose {

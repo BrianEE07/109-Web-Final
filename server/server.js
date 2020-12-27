@@ -1,14 +1,19 @@
 import express from 'express';
 const app = express();
 const port = process.env.PORT || 4000
+import cors from 'cors' 
+import bodyParser from 'body-parser';
 import homeRouter from './routes/home.js'; 
 import usersRouter from './routes/users.js';
-import cors from 'cors' 
+// 之後拿掉
+import { saveNewUser, clearDB, printDB } from './core/userDB.js'
+// 之後拿掉
 app.use(cors())
+app.use(bodyParser.json());
+app.use('/', homeRouter);
+app.use('/users', usersRouter);
 
 import mongoose from 'mongoose' 
-import User from './models/userSchema.js'
-// require('dotenv-defaults').config();
 import dotenv from 'dotenv-defaults'
 dotenv.config()
 
@@ -16,45 +21,30 @@ if (!process.env.MONGO_URL) {
     console.error('Missing MONGO_URL!!!') 
     process.exit(1)
 }
+
 const dbOptions = {
     useNewUrlParser: true,
     useUnifiedTopology: true
 };
-mongoose.connect(process.env.MONGO_URL, dbOptions) .then(res => {
-console.log('mongo db connection created') })
+
+mongoose.connect(process.env.MONGO_URL, dbOptions) 
+
 const db = mongoose.connection;
 
+db.on('error', (error) => {
+    console.error(error)
+})
 
-const saveUser = (id, name) => { User.countDocuments({name}, (err, count) => {
-    if (count)
-        console.log(`data ${name} exists!!`);
-    else {
-        const user = new User({id, name}); user.save((err) => {
-        if (err) console.error(err);
-        console.log(`data ${name} saved!!!`); 
-        });
-     };
-    })
-};
-db.once('open', () => { 
-    saveUser(57, "Ric");
-    saveUser(57, "Ric");
-    saveUser(56, "pig");
-    saveUser(55, "goose"); 
+db.once('open', async () => { 
+    console.log('MongoDB connected!');
     app.listen(port, () =>
-// 把 Express server 放在這邊啟動 
-        console.log(`Web Final app listening on port ${port}!`)
- ); });
-
-
-
-import bodyParser from 'body-parser';
-// Parses the text as JSON and exposes the resulting // object on req.body.
-app.use(bodyParser.json());
-// app.use(express.json())
-app.use('/', homeRouter);
-app.use('/users', usersRouter);
-
-// app.listen(port, () =>
-//     console.log(`Web Final is listening on port ${port}!`),
-// );
+        console.log(`Web Final app listening on port ${port}!`));
+        
+    await clearDB();
+    // await saveNewUser("", "", "", []);
+    await saveNewUser("brian_email", "brian", "brianpassword", []);
+    await saveNewUser("ray_email", "ray", "raypassword", []);
+    await saveNewUser("ric_email", "ric", "ricpassword", []);
+    await saveNewUser("ric_email", "ric", "ricpassword", []);
+    await printDB();
+});

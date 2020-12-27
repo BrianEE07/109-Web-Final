@@ -1,13 +1,24 @@
 import mongoose from 'mongoose' 
+import uniqueValidator from 'mongoose-unique-validator'
 const Schema = mongoose.Schema
 const UserSchema = new Schema({
     
-    account: String,
+    email: {type: String, unique: true},
+    account: {type: String, unique: true},
     password: String,
     chicken: [{current: Boolean, bornDate: Date}],
     
 });
-// 定義 schema
+
+
+// validate:{
+//     validator: validator.isEmail,
+//     message: '{VALUE} is not a valid email',
+//     isAsync: false
+//   }
+
+
+UserSchema.plugin(uniqueValidator);
+
 const User = mongoose.model('User', UserSchema);
-// 根據 schema 宣告⼀一個 collection (model)
 export default User;

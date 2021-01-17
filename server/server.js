@@ -1,20 +1,23 @@
 import express from 'express';
-const app = express();
-const port = process.env.PORT || 4000
+
 import cors from 'cors' 
 import bodyParser from 'body-parser';
-import homeRouter from './routes/home.js'; 
+import homeRouter from './routes/chickens.js'; 
 import usersRouter from './routes/users.js';
-// 之後拿掉
-import { saveNewUser, clearDB, printDB } from './core/userDB.js'
-// 之後拿掉
-app.use(cors())
-app.use(bodyParser.json());
-app.use('/', homeRouter);
-app.use('/users', usersRouter);
-
 import mongoose from 'mongoose' 
 import dotenv from 'dotenv-defaults'
+// 之後拿掉
+import { saveNewUser, clearDB, printDB } from './core/userDB.js'
+import { saveNewChicken, printChDB, updateHunger, clearChDB, updateHP } from './core/chickenDB.js'
+// 之後拿掉
+const app = express();
+const port = process.env.PORT || 4000
+app.use(cors())
+app.use(bodyParser.json());
+app.use('/chickens', homeRouter);
+app.use('/users', usersRouter);
+
+
 dotenv.config()
 
 if (!process.env.MONGO_URL) { 
@@ -39,12 +42,29 @@ db.once('open', async () => {
     console.log('MongoDB connected!');
     app.listen(port, () =>
         console.log(`Web Final app listening on port ${port}!`));
-        
-    await clearDB();
+
+    var today = new Date();
+    const month = today.getMonth()+1
+    const date = today.getDate()
+    const hour = today.getHours()
+    const minute = today.getMinutes()
+    const second = today.getSeconds()
+    var time = month+'-'+ date+'-'+ hour+ ":" + minute + ":" + second;
+    var t = today.getTime()
+    await clearChDB();
+    await saveNewChicken("peter", 0, 100, t);
+    var t1 = today.getTime()
+    await printChDB();
+    await updateHunger("peter", 20, t1);
     // await saveNewUser("", "", "", []);
-    await saveNewUser("brian_email", "brian", "brianpassword", []);
-    await saveNewUser("ray_email", "ray", "raypassword", []);
-    await saveNewUser("ric_email", "ric", "ricpassword", []);
-    await saveNewUser("ric_email", "ric", "ricpassword", []);
-    await printDB();
+    // await saveNewUser("brian_email", "brian", "brianpassword", []);
+    // await saveNewUser("ray_email", "ray", "raypassword", []);
+    // await saveNewUser("ric_email", "ric", "ricpassword", []);
+    // await saveNewUser("ric_email", "ric", "ricpassword", []);
+    await printChDB();
+    await updateHP("peter", 40, t1);
+    await printChDB();
+    // await printDB();
+    console.log(t)
+    console.log(t1)
 });

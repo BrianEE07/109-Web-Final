@@ -3,8 +3,9 @@ import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import Login from "./login/login"
+import App from "./App"
 import Game from "./game"
-
+import Setting from "./setting"
 import SignUp from "./login/signup";
 
 
@@ -13,6 +14,7 @@ import SignUp from "./login/signup";
    <BrowserRouter>
     <Switch>
 
+     <Route exact path="/" component={App} />
      <Route path="/login" component={Login} />
      <Route path="/signup" component={SignUp} />
      <Route path="/game" component={Game} />

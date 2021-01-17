@@ -30,6 +30,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
+import Chicken from './chicken.js';
 
 TabPanel.propTypes = {
   children: PropTypes.node,
@@ -118,9 +119,7 @@ function Game() {
       </Grid>
       <Grid className="visual_block">
         <Grid className="house">
-          <Grid className="test_animation">
-            <img className={classes.chicken} src={chicken}/>
-          </Grid>
+          <Chicken height="85%" width="75%"/>
         </Grid>
         <Grid className="interaction">
           {//interaction_swi(inter)}

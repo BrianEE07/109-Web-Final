@@ -49,6 +49,7 @@ function App() {
     */
    
     return(
+      <div className="container_bg">
       <div className="container">
         <Input placeholder="username"></Input>
         <br></br>
@@ -60,6 +61,7 @@ function App() {
         <Link to="/game">
           <button> Login </button>
         </Link>
+      </div>
       </div>
     )
 

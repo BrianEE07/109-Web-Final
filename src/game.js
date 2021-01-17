@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import React, { useEffect, useRef, useState } from 'react'
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
+import Badge from '@material-ui/core/Badge';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import RedditIcon from '@material-ui/icons/Reddit';
 import PhoneIcon from '@material-ui/icons/Phone';
@@ -21,8 +22,14 @@ import Tab from '@material-ui/core/Tab';
 import Paper from 'material-ui/Paper';
 //import {Animate, useAnimateKeyframes, useAnimateGroup } from "react-simple-animate"
 import stickman1 from "./img/stickman1.jpg";
-import EEGG from "./img/electricalGG.png";
+import chicken from "./img/chicken.png";
+import chicken2 from "./img/chicken2.png";
+import ahhmeow from "./img/ahhmeow.jpg";
 import { Icon } from '@material-ui/core';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Divider from '@material-ui/core/Divider';
 
 TabPanel.propTypes = {
   children: PropTypes.node,
@@ -39,8 +46,11 @@ function a11yProps(index) {
 
 
 function Game() {
-  const [inter, setInter] = useState('menu')
+  const [user, setUser] = useState('范詠為')
   const [tabValue, setTabValue] = useState(0);
+  const [life, setLife] = useState(100);
+  const [hunger, setHunger] = useState(100);
+  const [health, setHealth] = useState(100);
   const useStyles = makeStyles({
     icon:{
       height: '20%',
@@ -51,6 +61,23 @@ function Game() {
     labelContainer: {
       paddingLeft: 0,
       paddingRight: 0
+    },
+    root: {
+      width: '100%',
+      maxWidth: 360,
+    },
+    padge:{
+      right: -100,
+      top: 100,
+      padding: '10 40px',
+    },
+    list_img:{
+      width: '30%',
+      height: '100%'
+    },
+    chicken:{
+      height: '80px',
+      width: '80px'
     }
   })
   const classes = useStyles();
@@ -64,43 +91,25 @@ function Game() {
   const handleChange = (event, newValue) => {
     setTabValue(newValue);
   };
-  /*
-  const { play, style, isPlaying } = useAnimateKeyframes({
-    iterationCount: "infinite",
-    direction: "alternate",
-    duration: 3,
-    play: true,
-    pause: paused,
-    keyframes: [
-      "transform: skewX(-5deg) translateY(0px) translateX(0px)",
-      "transform: skewX(5deg) translateY(10px) translateX(20px)",
-      "transform: skewX(-5deg) translateY(0px) translateX(40px)",
-      "transform: skewX(5deg) translateY(10px) translateX(60px)",
-      "transform: skewX(-5deg) translateY(0px) translateX(80px)",
-      "transform: skewX(5deg) translateY(10px) translateX(100px)",
-      "transform: skewX(-5deg) translateY(0px) translateX(120px)",
-      "transform: skewX(5deg) translateY(10px) translateX(140px)",
-      "transform: skewX(-5deg) translateY(0px) translateX(160px)",
-      "transform: skewX(5deg) translateY(10px) translateX(180px)",
-      "transform: skewX(-5deg) translateY(0px) translateX(200px)",
-      "transform: skewX(5deg) translateY(10px) translateX(220px)"
-    ]
-  });
-*/
   return (
+    <div className="container_bg">
     <div className="container">
       <Grid className="moniter">
-        <img className="moni_logo" src={EEGG}/>
+        <img className="moni_logo" src={chicken2}/>
+        <div>This is {user}'s electric GG</div>
         <Grid className="moni_status">
           <FavoriteIcon className="moni_status_icon"/>
+          <Grid className="moni_status_icon">{life}%</Grid>
           <img className="moni_status_bar" src="https://www.flaticon.com/svg/static/icons/svg/40/40471.svg"/>
         </Grid>
         <Grid className="moni_status">
           <LocalHospitalIcon className="moni_status_icon"/>
+          <Grid className="moni_status_icon">{health}%</Grid>
           <img className="moni_status_bar" src="https://www.flaticon.com/svg/static/icons/svg/40/40471.svg"/>
         </Grid>
         <Grid className="moni_status">
           <RestaurantMenuIcon className="moni_status_icon"/>
+          <Grid className="moni_status_icon">{hunger}%</Grid>
           <img className="moni_status_bar" src="https://www.flaticon.com/svg/static/icons/svg/40/40471.svg"/>
         </Grid>
         <Link to="/setting">
@@ -110,7 +119,7 @@ function Game() {
       <Grid className="visual_block">
         <Grid className="house">
           <Grid className="test_animation">
-            <img src={stickman1} className="GG"  />
+            <img className={classes.chicken} src={chicken}/>
           </Grid>
         </Grid>
         <Grid className="interaction">
@@ -124,7 +133,7 @@ function Game() {
               textColor="black"
               aria-label="icon label tabs example"
               centered
-              width='100%'s
+              width='100%'
               maxWidth= '40'
             >
               <Tab icon={<BathtubIcon />} class={classes.labelContainer} style={tabStyle} label="Bath" {...a11yProps(0)}/>
@@ -132,18 +141,68 @@ function Game() {
               <Tab icon={<RestaurantIcon/>} class={classes.labelContainer} style={tabStyle} label="Food" {...a11yProps(2)}/>
             </Tabs>
           <TabPanel value={tabValue} index={0}>
-            洗澎澎
-            洗洗洗
+          <List component="nav" className={classes.root} aria-label="mailbox folders">
+            <ListItem button>
+              <LocalHospitalIcon/>
+              <ListItemText primary="Inbox" />
+            </ListItem>
+            <Divider />
+            <ListItem button divider>
+              <img src = {ahhmeow} className={classes.list_img}/>
+              <ListItemText primary="Kitty" />
+            </ListItem>
+            <ListItem button>
+              <ListItemText primary="Trash" />
+            </ListItem>
+            <Divider light />
+            <ListItem button>
+              <ListItemText primary="Spam" />
+            </ListItem>
+          </List>
           </TabPanel>
           <TabPanel value={tabValue} index={1}>
-            <RedditIcon/>
+          <List component="nav" className={classes.root} aria-label="mailbox folders">
+            <ListItem button>
+              <LocalHospitalIcon/>
+              <ListItemText primary="I" />
+            </ListItem>
+            <Divider />
+            <ListItem button divider>
+              <img src = {ahhmeow} className={classes.list_img}/>
+              <ListItemText primary="really really" />
+            </ListItem>
+            <ListItem button>
+              <ListItemText primary="love" />
+            </ListItem>
+            <Divider light />
+            <ListItem button>
+              <ListItemText primary="you" />
+            </ListItem>
+          </List>
           </TabPanel>
           <TabPanel value={tabValue} index={2}>
-            吃飯飯
-            吃吃吃
+          <List component="nav" className={classes.root} aria-label="mailbox folders">
+            <ListItem button>
+              <LocalHospitalIcon/>
+              <ListItemText primary="I" />
+            </ListItem>
+            <Divider />
+            <ListItem button divider>
+              <img src = {ahhmeow} className={classes.list_img}/>
+              <ListItemText primary="Dont" />
+            </ListItem>
+            <ListItem button>
+              <ListItemText primary="Like" />
+            </ListItem>
+            <Divider light />
+            <ListItem button>
+              <ListItemText primary="You" />
+            </ListItem>
+          </List>
           </TabPanel>
         </Grid>
       </Grid>
+    </div>
     </div>
   )
 }

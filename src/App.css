@@ -2,20 +2,31 @@
   text-align: center;
 }
 
-.container {
+.container_bg {
   height: 97.5vh;
-  width: 99vw;
-  background-image:url( https://cdn.pixabay.com/photo/2017/08/30/01/05/milky-way-2695569_1280.jpg );
+  width: 100%;
+  background-image:url(./img/bg.png);
+  /* background:#6D84DE; */
+  background-size: contain;
+  background-repeat: round;
+  margin-left: 0%;
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+  background:rgba(255,255,255,0);   /* rgba(255,255,255,opacity) => another white filter to abtain background opacity */
   justify-content: space-around;
   align-items: center;
   flex-direction: column;
   display: flex;
   font-family: 'fantasy','Segoe UI','Fredoka One','DFKai-sb';
+  
 }
 
 .moniter {
   height: 15%;
-  width: 95%;
+  width: 100%;
   background-color: transparent;
   align-items: center;
   border-radius:10px;
@@ -25,7 +36,7 @@
 }
 
 .moni_logo {
-  width: 20%;
+  width: 10%;
   height: 100%;
 }
 
@@ -42,10 +53,11 @@
   margin-left: 2.5%;
   height: 80%;
   width: 15%;
-  background-color: #E680FF;
+  background-color: #F8E261;
   outline: black;
   display: flex;
   align-items: center;
+  border-radius:10px;
   flex-direction: row;
 }
 
@@ -53,8 +65,9 @@
   height: 100%;
   width: 15%;
   background-color: transparent;
+  align-items: center;
   display: flex;
-  margin-left: 10%;
+  margin-left: 5%;
 }
 
 .moni_status_bar {
@@ -62,6 +75,7 @@
   width: 80%;
   background-color: transparent;
   display: flex;
+  margin-left: 0%;
 }
 
 .moni_setting {
@@ -75,8 +89,8 @@
 
 .visual_block {
   height: 85%;
-  width: 95%;
-  background-color: cadetblue;
+  width: 100%;
+  background-color: transparent;
   align-items: center;
   flex-direction: row;
   display: flex;
@@ -85,10 +99,11 @@
 .house {
   height: 100%;
   width: 75%;
-  background-color: black;
+  background-color: transparent;
   align-items: center;
   flex-direction: row;
   display: flex;
+  margin-left: 0%;
 }
 
 .GG {
@@ -98,7 +113,7 @@
 .test_animation {
   height: 50%;
   width: 100%;
-  background-color: white;
+  background-color: transparent;
   align-items: center;
   flex-direction: row;
   display: flex;
@@ -123,12 +138,15 @@ button {
 }
 
 .interaction {
-  height: 100%;
+  height: 95%;
   width: 25%;
-  background-color: #f9d9ca;
+  background-color: #F8E261;
   align-items: center;
   flex-direction: column;
   display: flex;
+  margin-left: 3%;
+  border-radius:10px;
+  margin-right: 3%;
 }
 
 .int_appbar {

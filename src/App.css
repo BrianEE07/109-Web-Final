@@ -2,24 +2,42 @@
   text-align: center;
 }
 
+.container_bg {
+  height: 97.5vh;
+  width: 100%;
+  background-image:url(./img/bg.png);
+  /* background:#6D84DE; */
+  background-size: contain;
+  background-repeat: round;
+  margin-left: 0%;
+}
+
 .container {
-  height: 98vh;
-  background-color:  #f9d9ca;
+  height: 100%;
+  width: 100%;
+  background:rgba(255,255,255,0);   /* rgba(255,255,255,opacity) => another white filter to abtain background opacity */
   justify-content: space-around;
   align-items: center;
   flex-direction: column;
   display: flex;
   font-family: 'fantasy','Segoe UI','Fredoka One','DFKai-sb';
+  
 }
 
 .moniter {
   height: 15%;
-  width: 95%;
-  background-color: #a2dff0;
+  width: 100%;
+  background-color: transparent;
   align-items: center;
+  border-radius:10px;
   justify-content: space-around;
   flex-direction: row;
   display: flex;
+}
+
+.moni_logo {
+  width: 10%;
+  height: 100%;
 }
 
 .moni_name {
@@ -34,26 +52,30 @@
 .moni_status {
   margin-left: 2.5%;
   height: 80%;
-  width: 20%;
-  background-color: #a2dff0;
+  width: 15%;
+  background-color: #F8E261;
   outline: black;
   display: flex;
   align-items: center;
+  border-radius:10px;
   flex-direction: row;
 }
 
 .moni_status_icon {
   height: 100%;
-  width: 25%;
-  background-color: #a2dff0;
+  width: 15%;
+  background-color: transparent;
+  align-items: center;
   display: flex;
+  margin-left: 5%;
 }
 
 .moni_status_bar {
   height: 120%;
-  width: 70%;
-  background-color: #a2dff0;
+  width: 80%;
+  background-color: transparent;
   display: flex;
+  margin-left: 0%;
 }
 
 .moni_setting {
@@ -67,8 +89,8 @@
 
 .visual_block {
   height: 85%;
-  width: 95%;
-  background-color: cadetblue;
+  width: 100%;
+  background-color: transparent;
   align-items: center;
   flex-direction: row;
   display: flex;
@@ -76,11 +98,12 @@
 
 .house {
   height: 100%;
-  width: 85%;
-  background-color: black;
+  width: 75%;
+  background-color: transparent;
   align-items: center;
   flex-direction: row;
   display: flex;
+  margin-left: 0%;
 }
 
 .GG {
@@ -90,7 +113,7 @@
 .test_animation {
   height: 50%;
   width: 100%;
-  background-color: white;
+  background-color: transparent;
   align-items: center;
   flex-direction: row;
   display: flex;
@@ -115,13 +138,20 @@ button {
 }
 
 .interaction {
-  height: 100%;
-  width: 15%;
-  background-color: #f9d9ca;
+  height: 95%;
+  width: 25%;
+  background-color: #F8E261;
   align-items: center;
-  justify-content: space-around;
   flex-direction: column;
   display: flex;
+  margin-left: 3%;
+  border-radius:10px;
+  margin-right: 3%;
+}
+
+.int_appbar {
+  width: 100%;
+  height: 100%;
 }
 
 .int_icon {

@@ -52,6 +52,12 @@ function Game() {
   const [life, setLife] = useState(100);
   const [hunger, setHunger] = useState(100);
   const [health, setHealth] = useState(100);
+  const [mouseX, setMouseX] = useState(0);
+  const [mouseY, setMouseY] = useState(0);
+  const [houseHeight, setHouseHeight] = useState(0);
+  const [houseWidth, setHouseWidth] = useState(0);
+  const [clicked, setClicked] = useState(false);
+  const houseRef = useRef();
   const useStyles = makeStyles({
     icon:{
       height: '20%',
@@ -92,6 +98,24 @@ function Game() {
   const handleChange = (event, newValue) => {
     setTabValue(newValue);
   };
+
+  useEffect(() => {
+    const updateHW = () => {
+      setHouseHeight(houseRef.current.offsetHeight)
+      setHouseWidth(houseRef.current.offsetWidth)
+    }
+    updateHW()
+    console.log(`houseWidth: ${houseWidth}, houseHeight: ${houseHeight}`)
+    window.addEventListener('resize', updateHW)
+  }, [houseWidth, houseHeight])
+
+  const onClickScreen = (e) => {
+    setMouseX(e.clientX - houseRef.current.offsetLeft) 
+    setMouseY(e.clientY - houseRef.current.offsetTop) 
+    console.log(`relativeX: ${mouseX}, relativeY: ${mouseY}`)
+    setClicked(true)
+  }
+
   return (
     <div className="container_bg">
     <div className="container">
@@ -118,15 +142,15 @@ function Game() {
         </Link>
       </Grid>
       <Grid className="visual_block">
-        <Grid className="house">
-          <Chicken height="85%" width="75%"/>
+        <Grid className="house" onClick={onClickScreen} ref={houseRef}>
+          <Chicken height={houseHeight} width={houseWidth} mouseX={mouseX} mouseY={mouseY} clicked={clicked} setClicked={setClicked}/>
         </Grid>
         <Grid className="interaction">
           {//interaction_swi(inter)}
             }
             <Tabs
               value={tabValue}
-              onChange={handleChange}
+              onChange={(e) => handleChange(e)}
               variant="fullWidth"
               indicatorColor="secondary"
               textColor="black"

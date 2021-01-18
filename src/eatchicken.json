@@ -1,0 +1,39 @@
+{"frames": {
+
+"eatchicken1.png":
+{
+	"frame": {"x":0,"y":0,"w":389,"h":456},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":389,"h":456},
+	"sourceSize": {"w":389,"h":456}
+},
+"eatchicken2.png":
+{
+	"frame": {"x":0,"y":456,"w":397,"h":416},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":397,"h":416},
+	"sourceSize": {"w":397,"h":416}
+},
+"eatchicken3.png":
+{
+	"frame": {"x":0,"y":872,"w":435,"h":533},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":435,"h":533},
+	"sourceSize": {"w":435,"h":533}
+}},
+"animations": {
+	"eatchicken": ["eatchicken1.png","eatchicken2.png","eatchicken3.png"]
+},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "eatchicken.png",
+	"format": "RGBA8888",
+	"size": {"w":435,"h":1405},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:552c4491b61194b8e172462bb163dcef:7c9ad78ba0af8a159aba022e3533baba:257fcc36a86d5be1a569dc2099bef6cd$"
+}
+}

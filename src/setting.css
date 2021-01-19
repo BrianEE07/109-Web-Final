@@ -1,0 +1,102 @@
+
+.container_set {
+    height: 100%;
+    width: 100%;
+    background:#EDA64E;   /* rgba(255,255,255,opacity) => another white filter to abtain background opacity */
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+    font-family: 'fantasy','Segoe UI','Fredoka One','DFKai-sb';
+    
+  }
+
+.set_data {
+    height: 80%;
+    width: 95%;
+    background-color: #EDA64E;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+    display: flex;
+  }
+  
+  .set_property {
+    height: 95%;
+    width: 60vw;
+    background-color: #A6544B;
+    flex-direction: row;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius:10px;
+  }
+  
+  .set_user_icon {
+    margin-top: 5%;
+    margin-left: 2.5%;
+    height: 5vmin;
+    width: 5vmin;
+    display: flex;
+  }
+  
+  .set_user_word {
+    margin-top: 5%;
+    margin-left: 2.5%;
+    height: 10%;
+    width: 85%;
+    background-color: #92BCE0;
+    align-items: left;
+    justify-content:left;
+    border-radius:10px;
+  }
+  
+  .set_property_icon {
+    margin-top: 0%;
+    margin-left: 2.5%;
+    height: 5vmin;
+    width: 5vmin;
+    display: flex;
+  }
+  
+  .set_property_list {
+    margin-top: 0%;
+    margin-left: 2.5%;
+    height: 70%;
+    width: 80%;
+    background-color: #92BCE0;
+    flex-direction: column;
+    align-items: left;
+    justify-content:left;
+    display: flex;
+    border-radius:10px;
+  }
+  
+  .set_pet {
+    height: 95%;
+    width: 25vw;
+    background-color: #A6544B;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    display: flex;
+    border-radius:10px;
+  }
+  
+  .set_pet_pic {
+    height: 45vmin;
+    width: 45vmin;
+    display: flex;
+  }
+  
+  .set_pet_name {
+    width: 80%;
+    height: 10%;
+    text-align: center;
+    align-items: center;
+    border-radius:10px;
+    background-color: #92BCE0;
+  }
+  
+
+  
+

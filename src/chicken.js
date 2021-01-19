@@ -9,6 +9,7 @@ import mychickenBWJson from './img/mychicken/mychickenBW.json'
 import mychickenEAT from './img/mychicken/mychickenEAT.png'
 import mychickenEATJson from './img/mychicken/mychickenEAT.json'
 
+
 const ChickenFW = (props) => {
   const [frames, setFrames] = useState([])
   const willMount = useRef(true);

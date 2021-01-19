@@ -5,7 +5,7 @@
 .container_bg {
   height: 97.5vh;
   width: 100%;
-  background-image:url(./img/bg.png);
+  background-image:url(./img/bg/bg.png);
   /* background:#6D84DE; */
   background-size: contain;
   background-repeat: round;
@@ -71,8 +71,8 @@
 }
 
 .moni_status_bar {
-  height: 120%;
-  width: 80%;
+  height: 30%;
+  width: 60%;
   background-color: transparent;
   display: flex;
   margin-left: 0%;
@@ -85,6 +85,30 @@
   display: flex;
   align-items: center;
   text-align: center;
+}
+
+.moni_mute {
+  height: 100%;
+  width: 5%;
+  background-color: transparent;
+  flex-direction: row;
+  align-items: center;
+  display: flex;
+  border-radius:10px;
+}
+
+.moni_mute_icon {
+  height: 40%;
+  width: 50%;
+  margin-left: 2.5%;
+  display: flex;
+}
+
+.moni_mute_button {
+  height: 30%;
+  width: 30%;
+  margin-left: 10%;
+  display: flex;
 }
 
 .visual_block {
@@ -178,120 +202,6 @@ button {
   display: flex;
 }
 
-.set_data {
-  height: 80%;
-  width: 95%;
-  background-color: pink;
-  align-items: center;
-  justify-content: space-around;
-  flex-direction: row;
-  display: flex;
-}
-
-.set_property {
-  height: 95%;
-  width: 60vw;
-  background-color: rgb(240, 224, 224);
-  flex-direction: row;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.set_user_icon {
-  margin-top: 5%;
-  margin-left: 2.5%;
-  height: 5vmin;
-  width: 5vmin;
-  display: flex;
-}
-
-.set_user_word {
-  margin-top: 5%;
-  margin-left: 2.5%;
-  height: 10%;
-  width: 85%;
-  background-color: skyblue;
-  align-items: center;
-}
-
-.set_property_icon {
-  margin-top: 0%;
-  margin-left: 2.5%;
-  height: 5vmin;
-  width: 5vmin;
-  display: flex;
-}
-
-.set_property_list {
-  margin-top: 0%;
-  margin-left: 2.5%;
-  height: 70%;
-  width: 80%;
-  background-color: skyblue;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-  display: flex;
-}
-
-.set_pet {
-  height: 95%;
-  width: 25vw;
-  background-color: white;
-  align-items: center;
-  justify-content: space-around;
-  flex-direction: column;
-  display: flex;
-}
-
-.set_pet_pic {
-  height: 45vmin;
-  width: 45vmin;
-  display: flex;
-}
-
-.set_pet_name {
-  width: 80%;
-  height: 20%;
-}
-
-.set_mute {
-  height: 7.5%;
-  width: 95%;
-  background-color: white;
-  flex-direction: row;
-  align-items: center;
-  display: flex;
-}
-
-.set_mute_icon {
-  height: 80%;
-  width: 5%;
-  margin-left: 2.5%;
-  display: flex;
-}
-
-.set_mute_button {
-  height: 50%;
-  width: 10%;
-  margin-left: -4%;
-  display: flex;
-  background-color: black;
-}
-
-.set_logout_ss {
-  height: 7.5%;
-  width: 10%;
-  display: flex;
-  background-color:gray;
-}
-
-.set_logout {
-  height: 5%;
-  width: 7.5%;
-  align-items: center;
-  background-color: khaki;
-}
 
 /*-----------------------------------------------------------*/
 .App-logo {

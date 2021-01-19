@@ -1,12 +1,13 @@
 import { Stage, PixiComponent, Container, Sprite, AnimatedSprite, useTick, useApp} from '@inlet/react-pixi'
 import React, { Component, useState, useRef, useEffect} from 'react';
 import * as PIXI from 'pixi.js';
-import mychickenFW from './img/mychicken/mychickenFW.png'
-import mychickenFWJson from './img/mychicken/mychickenFW.json'
+import mychickenFW from './img/icebird/icebird.png'
+import mychickenFWJson from './img/icebird/icebird.json'
 import mychickenBW from './img/mychicken/mychickenBW.png'
 import mychickenBWJson from './img/mychicken/mychickenBW.json'
 import mychickenEAT from './img/mychicken/mychickenEAT.png'
 import mychickenEATJson from './img/mychicken/mychickenEAT.json'
+
 import { setState } from 'expect';
 
 const ChickenSize = 70;
@@ -48,7 +49,6 @@ const ChickenFW = (props) => {
             props.setState('backward')
         }
     }
-    console.log(x)
   })
 
   if (frames.length === 0) {
@@ -106,7 +106,6 @@ const ChickenBW = (props) => {
             props.setState('forward')
         }
     }
-    console.log(x)
   })
 
   if (frames.length === 0) {

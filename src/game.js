@@ -52,11 +52,9 @@ function Game() {
   const [life, setLife] = useState(100);
   const [hunger, setHunger] = useState(100);
   const [health, setHealth] = useState(100);
-  const [mouseX, setMouseX] = useState(0);
-  const [mouseY, setMouseY] = useState(0);
   const [houseHeight, setHouseHeight] = useState(0);
   const [houseWidth, setHouseWidth] = useState(0);
-  const [clicked, setClicked] = useState(false);
+  const [foodpos, setFoodPos] = useState([]);
   const houseRef = useRef();
   const useStyles = makeStyles({
     icon:{
@@ -110,10 +108,8 @@ function Game() {
   }, [houseWidth, houseHeight])
 
   const onClickScreen = (e) => {
-    setMouseX(e.clientX - houseRef.current.offsetLeft) 
-    setMouseY(e.clientY - houseRef.current.offsetTop) 
-    console.log(`relativeX: ${mouseX}, relativeY: ${mouseY}`)
-    setClicked(true)
+    console.log(`relativeX: ${e.clientX - houseRef.current.offsetLeft}, relativeY: ${e.clientY - houseRef.current.offsetTop}`)
+    setFoodPos([e.clientX - houseRef.current.offsetLeft, e.clientY - houseRef.current.offsetTop])
   }
 
   return (
@@ -143,7 +139,7 @@ function Game() {
       </Grid>
       <Grid className="visual_block">
         <Grid className="house" onClick={onClickScreen} ref={houseRef}>
-          <Chicken height={houseHeight} width={houseWidth} mouseX={mouseX} mouseY={mouseY} clicked={clicked} setClicked={setClicked}/>
+          <Chicken height={houseHeight} width={houseWidth} foodpos={foodpos} setFoodPos={setFoodPos}/>
         </Grid>
         <Grid className="interaction">
           {//interaction_swi(inter)}

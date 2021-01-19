@@ -1,15 +1,13 @@
 import { Stage, PixiComponent, Container, Sprite, AnimatedSprite, useTick, useApp} from '@inlet/react-pixi'
 import React, { Component, useState, useRef, useEffect} from 'react';
 import * as PIXI from 'pixi.js';
+import Food from './food.js'
 import mychickenFW from './img/mychicken/mychickenFW.png'
 import mychickenFWJson from './img/mychicken/mychickenFW.json'
 import mychickenBW from './img/mychicken/mychickenBW.png'
 import mychickenBWJson from './img/mychicken/mychickenBW.json'
 import mychickenEAT from './img/mychicken/mychickenEAT.png'
 import mychickenEATJson from './img/mychicken/mychickenEAT.json'
-import { setState } from 'expect';
-
-const ChickenSize = 70;
 
 const ChickenFW = (props) => {
   const [frames, setFrames] = useState([])
@@ -30,25 +28,24 @@ const ChickenFW = (props) => {
 
   useTick(delta => {
     props.setPositionX(props.positionX + 1)
-    let x = Math.round((props.mouseX - ChickenSize) / 2);
-    if (x < 0) 
-        x = 0;
-    else if (x >= (props.width) / 2 - ChickenSize)
-        x = (props.width) / 2 - ChickenSize;
 
-    if (props.positionX > props.width / 2 - ChickenSize) {
+    if (props.positionX > props.width / 2 - props.chickensize) {
       props.setState('backward')
     }  
-    if(props.clicked) {
+    if(props.foodposarr.length) {
+        let x = Math.round((props.foodposarr[0][0] - props.chickensize) / 2);
+        if (x < 0) 
+            x = 0;
+        else if (x >= (props.width) / 2 - props.chickensize)
+            x = (props.width) / 2 - props.chickensize;
+
         if (props.positionX === x) {
-            props.setClicked(false)
             props.setState('eating')
         }
         else if (props.positionX > x) {
             props.setState('backward')
         }
     }
-    console.log(x)
   })
 
   if (frames.length === 0) {
@@ -60,8 +57,8 @@ const ChickenFW = (props) => {
         animationSpeed={0.1}
         isPlaying={true}
         textures={frames}
-        height={ChickenSize}
-        width={ChickenSize}
+        height={props.chickensize}
+        width={props.chickensize}
         x={props.positionX} 
         y={props.positionY}
     />
@@ -88,25 +85,24 @@ const ChickenBW = (props) => {
 
   useTick(delta => {
     props.setPositionX(props.positionX - 1)
-    let x = Math.round((props.mouseX - ChickenSize) / 2);
-    if (x < 0) 
-        x = 0;
-    else if (x >= (props.width - ChickenSize - 10) / 2) 
-        x = (props.width - ChickenSize - 10) / 2;
 
     if (props.positionX <= 0) {
       props.setState('forward')
     }
-    if(props.clicked) {
+    if(props.foodposarr.length) {
+        let x = Math.round((props.foodposarr[0][0] - props.chickensize) / 2);
+        if (x < 0) 
+            x = 0;
+        else if (x >= (props.width) / 2 - props.chickensize)
+            x = (props.width) / 2 - props.chickensize;
+
         if (props.positionX === x) {
-            props.setClicked(false)
             props.setState('eating')
         }
         else if (props.positionX < x) {
             props.setState('forward')
         }
     }
-    console.log(x)
   })
 
   if (frames.length === 0) {
@@ -119,8 +115,8 @@ const ChickenBW = (props) => {
         animationSpeed={0.1}
         isPlaying={true}
         textures={frames}
-        height={ChickenSize}
-        width={ChickenSize}
+        height={props.chickensize}
+        width={props.chickensize}
         x={props.positionX} 
         y={props.positionY}
     />
@@ -147,7 +143,13 @@ const ChickenEAT = (props) => {
   useTick(delta => {
       counter += delta;
       if (counter >= 200) {
-          props.setState('forward')
+            const newfoodarr = [...props.foodarr]
+            const newfoodposarr = [...props.foodposarr]
+            newfoodarr.shift() // remove first element
+            newfoodposarr.shift()
+            props.setFoodArr(newfoodarr)
+            props.setFoodPosArr(newfoodposarr)
+            props.setState('forward')
       }
   })
   
@@ -160,8 +162,8 @@ const ChickenEAT = (props) => {
         animationSpeed={0.05}
         isPlaying={true}
         textures={frames}
-        height={ChickenSize}
-        width={ChickenSize}
+        height={props.chickensize}
+        width={props.chickensize}
         x={props.positionX} 
         y={props.positionY}
     />
@@ -170,9 +172,36 @@ const ChickenEAT = (props) => {
 
 const Chicken = (props) => {
   const [positionX, setPositionX] = useState(0)
-  const [positionY, setPositionY] = useState(130)
+  const [positionY, setPositionY] = useState(0)
+  const [foodarr, setFoodArr] = useState([])
+  const [foodposarr, setFoodPosArr] = useState([])
+  const [foodId, setFoodId] = useState(0)
   const [state, setState] = useState('forward')
-  
+
+  useEffect(() => {
+      setPositionY(Math.round(props.height / 3.6))
+  }, [props.height])
+
+  useEffect(() => {
+    if (props.foodpos[1] < 2 * Math.round(props.height / 3.6) + 2 * Math.sqrt(props.height * props.width) / 10) {
+        setFoodArr([...foodarr, genNewFood()])
+        setFoodPosArr([...foodposarr, [props.foodpos[0], props.foodpos[1]]])
+    }
+  }, [props.foodpos])
+
+  const genNewFood = () => {
+    console.log(`gen ${foodarr.length} food x=${props.foodpos[0]}, y=${props.foodpos[1]}`)
+    const conf = {
+        foodId: foodId,
+        x: props.foodpos[0],
+        y: props.foodpos[1],
+        foodsize: Math.sqrt(props.height * props.width) / 80,
+        floorpos: positionY + Math.sqrt(props.height * props.width) / 10
+    }
+    setFoodId(foodId + 1);
+    return conf;
+  }
+
   const chooseState = () => {
     switch(state) {
         case 'forward':
@@ -180,12 +209,10 @@ const Chicken = (props) => {
             <ChickenFW 
                 positionX={positionX} 
                 positionY={positionY} 
-                mouseX={props.mouseX}
-                mouseY={props.mouseY}
                 height={props.height}
                 width={props.width}
-                clicked={props.clicked}
-                setClicked={props.setClicked}
+                chickensize={Math.sqrt(props.height * props.width) / 10}
+                foodposarr={foodposarr}
                 setPositionX={setPositionX} 
                 setState={setState}
             />
@@ -195,12 +222,10 @@ const Chicken = (props) => {
             <ChickenBW 
                 positionX={positionX} 
                 positionY={positionY} 
-                mouseX={props.mouseX}
-                mouseY={props.mouseY}
                 height={props.height}
                 width={props.width}
-                clicked={props.clicked}
-                setClicked={props.setClicked}
+                chickensize={Math.sqrt(props.height * props.width) / 10}
+                foodposarr={foodposarr}
                 setPositionX={setPositionX} 
                 setState={setState}
             />
@@ -210,6 +235,11 @@ const Chicken = (props) => {
             <ChickenEAT 
                 positionX={positionX} 
                 positionY={positionY} 
+                chickensize={Math.sqrt(props.height * props.width) / 10}
+                foodarr={foodarr}
+                foodposarr={foodposarr}
+                setFoodArr={setFoodArr}
+                setFoodPosArr={setFoodPosArr}
                 setState={setState}
             />
             );
@@ -217,9 +247,15 @@ const Chicken = (props) => {
   }
 
   return (
-  <Stage x={200} y={200} height={props.height / 2} width={props.width / 2} options={{transparent: true}}>
+  <Stage height={props.height / 2} width={props.width / 2} options={{transparent: true}}>
     <Container position={[0, 0]}>
     {chooseState()}
+    {foodarr.map(ele => (
+        <Food
+            key={ele.foodId}
+            {...ele}
+        />
+    ))}
     </Container>
   </Stage>)
 };

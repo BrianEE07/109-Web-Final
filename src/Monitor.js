@@ -46,6 +46,8 @@ const blue = [bluebar_0,bluebar_10,bluebar_20,bluebar_30,bluebar_40,bluebar_50,b
 const green = [greenbar_0,greenbar_10,greenbar_20,greenbar_30,greenbar_40,greenbar_50,greenbar_60,greenbar_70,greenbar_80,greenbar_90,greenbar_100]
 
 const Monitor = (props) => {
+    const setMuted = props.setMuted;
+    const muted = props.muted;
     return(
         <Grid className="moniter">
             <img className="moni_logo" src={chicken2}/>
@@ -65,6 +67,10 @@ const Monitor = (props) => {
                 <Grid className="moni_status_icon">{props.hunger}%</Grid>
                 <img className="moni_status_bar" src={blue[props.hunger/10]}/>
             </Grid>
+            <Grid className="moni_mute">
+                <img className="moni_mute_icon" src="https://www.flaticon.com/svg/static/icons/svg/727/727240.svg"/>
+                <input className="moni_mute_button" type="checkbox" onClick={() => setMuted(!muted)}/>
+          </Grid>
             <Link to="/setting">
             <Button
                 variant="contained"

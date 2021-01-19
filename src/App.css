@@ -87,6 +87,30 @@
   text-align: center;
 }
 
+.moni_mute {
+  height: 100%;
+  width: 5%;
+  background-color: transparent;
+  flex-direction: row;
+  align-items: center;
+  display: flex;
+  border-radius:10px;
+}
+
+.moni_mute_icon {
+  height: 40%;
+  width: 50%;
+  margin-left: 2.5%;
+  display: flex;
+}
+
+.moni_mute_button {
+  height: 30%;
+  width: 30%;
+  margin-left: 10%;
+  display: flex;
+}
+
 .visual_block {
   height: 85%;
   width: 100%;

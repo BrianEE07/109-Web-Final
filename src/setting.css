@@ -97,21 +97,6 @@
     background-color: #92BCE0;
   }
   
-  .set_mute {
-    height: 7.5%;
-    width: 95%;
-    background-color: transparent;
-    flex-direction: row;
-    align-items: center;
-    display: flex;
-    border-radius:10px;
-  }
-  
-  .set_mute_icon {
-    height: 80%;
-    width: 5%;
-    margin-left: 2.5%;
-    display: flex;
-  }
+
   
 

@@ -7,24 +7,25 @@ import PropTypes from 'prop-types';
 import Chicken from './chicken.js';
 import Monitor from './Monitor.js';
 import Interaction from './interaction.js';
-import ReactAudioPlayer from 'react-audio-player';
-import bgm from './sound/bgm.mp3'
+import bgm from './sound/titanic.mp3';
 //...
 
-
+async function pauseMusic(){
+  const x = document.getElementById("player");
+  await x.pause();
+}
+async function playMusic(){
+  const x = document.getElementById("player");
+  await x.play();
+}
 TabPanel.propTypes = {
   children: PropTypes.node,
   index: PropTypes.any.isRequired,
   value: PropTypes.any.isRequired,
 };
 const useStyles = makeStyles({
-  icon:{
-    height: '20%',
-    width: '90%',
-    boxShadow: '0 3px 5px 2px black',
-    justify: 'center',
-  },
   labelContainer: {
+    // maxwidth: 100,
     paddingLeft: 0,
     paddingRight: 0
   },
@@ -35,10 +36,6 @@ const useStyles = makeStyles({
   list_img:{
     width: '30%',
     height: '100%'
-  },
-  chicken:{
-    height: '80px',
-    width: '80px'
   }
 })
 function Game() {
@@ -53,9 +50,18 @@ function Game() {
   const [houseHeight, setHouseHeight] = useState(0);
   const [houseWidth, setHouseWidth] = useState(0);
   const [clicked, setClicked] = useState(false);
+  const [muted, setMuted] = useState(false);
   const houseRef = useRef();
-  
   const classes = useStyles();
+
+  //handle the BGM playing(invisible without 'controls' in <audio>)
+  useEffect(() => {
+    if(!muted)
+    playMusic();
+    else
+    pauseMusic();
+  },[muted])
+
   useEffect(() => {
     const updateHW = () => {
       setHouseHeight(houseRef.current.offsetHeight)
@@ -75,7 +81,7 @@ function Game() {
   return (
     <div className="container_bg">
     <div className="container">
-      <Monitor user={user} health={health} hunger={hunger} life={life}/>
+      <Monitor user={user} health={health} hunger={hunger} life={life} setMuted={setMuted} muted={muted}/>
       <Grid className="visual_block">
         <Grid className="house" onClick={onClickScreen} ref={houseRef}>
           <Chicken height={houseHeight} width={houseWidth} mouseX={mouseX} mouseY={mouseY} clicked={clicked} setClicked={setClicked}/>
@@ -85,14 +91,6 @@ function Game() {
       <audio id="player" autoplay loop>
           <source src={bgm} type="audio/mp3"/>
       </audio>
-      {/* <ReactAudioPlayer
-          classes="bgm_player"
-          src={bgm}
-          autoPlay={true}
-          controls
-        /> */}
-          {/* var x = document.getElementById("player"); 
-  x.play(); */}
     </div>
     </div>
   )

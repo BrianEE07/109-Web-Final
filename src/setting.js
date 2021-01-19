@@ -26,10 +26,6 @@ function Setting() {
               <Grid className="set_pet_name">{chickenName}</Grid>
             </Grid>
           </Grid>
-          <Grid className="set_mute">
-            <img className="set_mute_icon" src="https://www.flaticon.com/svg/static/icons/svg/727/727240.svg"/>
-            <input className="set_mute_button" type="checkbox"/>
-          </Grid>
           <Grid className="set_button_area">
             <Link to="/game">
             <Button

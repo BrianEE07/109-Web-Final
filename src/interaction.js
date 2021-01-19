@@ -16,11 +16,11 @@ import Divider from '@material-ui/core/Divider';
 
 
 let tabStyle = {
-    minWidth: 50,
-    paddingLeft: 0,
-    paddingRight: 0,
-    backgroundColor: "white",
-    letterSpacing: "-.04em"
+  height: '100%',
+  paddingLeft: 0,
+  paddingRight: 0,
+  backgroundColor: "white",
+  letterSpacing: "-.04em"
 }
 function a11yProps(index) {
     return {
@@ -34,8 +34,6 @@ const Interaction = (props) => {
     const setTabValue = props.setTabValue;
     return(
         <Grid className="interaction">
-          {//interaction_swi(inter)}
-            }
             <Tabs
               value={tabValue}
               variant="fullWidth"
@@ -43,8 +41,8 @@ const Interaction = (props) => {
               textColor="black"
               aria-label="icon label tabs example"
               centered
+              selected
               width='100%'
-              maxWidth= '40'
             >
               <Tab onClick={()=>setTabValue(0)} icon={<BathtubIcon />} class={classes.labelContainer} style={tabStyle} label="Bath" {...a11yProps(0)}/>
               <Tab onClick={()=>setTabValue(1)} icon={<FavoriteIcon />} class={classes.labelContainer} style={tabStyle} label="Play" {...a11yProps(1)}/>

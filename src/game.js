@@ -41,15 +41,13 @@ const useStyles = makeStyles({
 function Game() {
   const [user, setUser] = useState('范詠為');
   const [tabValue, setTabValue] = useState(0);
+  const [foodpos, setFoodPos] = useState([]);
   const [inter, setInter] = useState(0);
   const [life, setLife] = useState(90);
   const [hunger, setHunger] = useState(30);
   const [health, setHealth] = useState(0);
-  const [mouseX, setMouseX] = useState(0);
-  const [mouseY, setMouseY] = useState(0);
   const [houseHeight, setHouseHeight] = useState(0);
   const [houseWidth, setHouseWidth] = useState(0);
-  const [clicked, setClicked] = useState(false);
   const [muted, setMuted] = useState(false);
   const houseRef = useRef();
   const classes = useStyles();
@@ -73,9 +71,8 @@ function Game() {
   }, [houseWidth, houseHeight])
 
   const onClickScreen = (e) => {
-    setMouseX(e.clientX - houseRef.current.offsetLeft) 
-    setMouseY(e.clientY - houseRef.current.offsetTop)
-    setClicked(true)
+    console.log(`relativeX: ${e.clientX - houseRef.current.offsetLeft}, relativeY: ${e.clientY - houseRef.current.offsetTop}`)
+    setFoodPos([e.clientX - houseRef.current.offsetLeft, e.clientY - houseRef.current.offsetTop])
   }
 
   return (
@@ -84,7 +81,7 @@ function Game() {
       <Monitor user={user} health={health} hunger={hunger} life={life} setMuted={setMuted} muted={muted}/>
       <Grid className="visual_block">
         <Grid className="house" onClick={onClickScreen} ref={houseRef}>
-          <Chicken height={houseHeight} width={houseWidth} mouseX={mouseX} mouseY={mouseY} clicked={clicked} setClicked={setClicked}/>
+          <Chicken height={houseHeight} width={houseWidth} foodpos={foodpos} setFoodPos={setFoodPos}/>
         </Grid>
         <Interaction classes={classes} tabValue={tabValue} setTabValue={setTabValue}/>
       </Grid>

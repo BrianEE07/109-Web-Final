@@ -2,11 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-import Login from "./login/login"
+import Login from "./Pages/Login"
 import App from "./App"
 import Game from "./game"
 import Setting from "./setting"
-import SignUp from "./login/signup";
+import SignUp from "./Pages/SignUp";
 
 
  const rootElement = document.getElementById("root");

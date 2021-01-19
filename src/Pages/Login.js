@@ -13,8 +13,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Chicken from '../img/login/chicken.png';
-import { checkUser } from './axios';
 import { useHistory } from "react-router-dom";
+import { checkUser, useAuthState, useAuthDispatch } from '../Context' 
 
 
 function Copyright() {
@@ -53,10 +53,15 @@ const useStyles = makeStyles((theme) => ({
 
 function Login() {
   const classes = useStyles();
+  
+  const rememberedAccount = localStorage.getItem("checked") === true ? localStorage.account : ""
+  console.log(localStorage.getItem("checked"))
+  console.log(rememberedAccount)
   const [account, setAccount] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState({target: "", type: ""});
   const [isLogin, setIsLogin] = useState(false);
+  const [checked, setChecked] = useState(false);
   let history = useHistory();
 
   const handleAccountChange = (e) => {
@@ -66,7 +71,11 @@ function Login() {
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   }
-
+  const handleCheck = () => {
+    setChecked(!checked);
+    console.log(checked)
+    localStorage.setItem("checked", checked)
+  }
   const handleError = () => {
     if (account === "") {
       setError({target: "account", type: "Required text."});
@@ -94,20 +103,28 @@ function Login() {
   const redirect = () => {
     history.push("/game");
   }
-
-  const onSubmit = async () => {
+  const dispatch = useAuthDispatch() //get the dispatch method from the useDispatch custom hook
+  
+  const onSubmit = async (e) => {
+    e.preventDefault()
     if (handleError()) return;
-    let msg = await checkUser({account, password});
-    if (handleMsgError(msg)) return;
-    else {
-      setError({target: "", type: ""});
-    }
-    if (msg === "Login Successfully!!"){
-        setIsLogin(true);
-        console.log("Login SSSSSUUUUUCCCCCCEEEEESSSSS!!!!!");
-        redirect();
+    let payload = {account, password}
+    let msg = await checkUser(dispatch, payload);
+    try {
+      if (handleMsgError(msg)) return;
+      else {
+        setError({target: "", type: ""});
+      }
+      if (msg === "Login Successfully!!"){
+          setIsLogin(true);
+          console.log("Login SSSSSUUUUUCCCCCCEEEEESSSSS!!!!!");
+          redirect();
+      }
+    }catch (error) {
+      console.log(error)
     }
   }
+  
 
   return (
     <Container component="main" maxWidth="xs">
@@ -176,7 +193,7 @@ function Login() {
             onChange={handlePasswordChange}
           />}
           <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
+            control={<Checkbox checked={checked} onChange={handleCheck} value="remember" color="primary" />}
             label="Remember me"
           />
           <Button

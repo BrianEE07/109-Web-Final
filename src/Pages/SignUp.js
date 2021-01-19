@@ -12,12 +12,12 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Chicken from '../img/login/chicken2.png';
-import { signUp } from './axios';
+import Chicken from '../img/monitor/chicken2.png';
+// import { signUp } from './axios';
 import { useHistory } from "react-router-dom";
 import Alert from '@material-ui/lab/Alert';
 import AlertTitle from '@material-ui/lab/AlertTitle';
-
+import { signUp, useAuthState, useAuthDispatch } from '../Context' 
 
 function Copyright() {
   return (
@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function SignUp() {
+function SignUp(props) {
   const classes = useStyles();
   const [account, setAccount] = useState("");
   const [password, setPassword] = useState("");
@@ -103,24 +103,30 @@ function SignUp() {
   }
 
   const redirect = () => {
-    history.push("/login");
+    history.push("/game");
   }
-
-  const onSubmit = async () => {
+  const dispatch = useAuthDispatch()
+  const { loading, errorMessage } = useAuthState() //read the values of loading and errorMessage from context
+  const onSubmit = async (e) => {
+    e.preventDefault()
     if (handleError()) return;
-    let chicken = [];
-    let msg = await signUp({email, account, password, chicken});
-    if (handleMsgError(msg)) return;
-    else {
-      setError({target: "", type: ""});
+    let chicken = []
+    let payload = {email, account, password, chicken}
+    try {
+        let msg = await signUp(dispatch, payload) //loginUser action makes the request and handles all the neccessary state changes
+        if (handleMsgError(msg)) return;
+        else {
+              setError({target: "", type: ""});
+            }
+        if (msg === "Signup Successfully!!"){
+            setSignUpSuccess(true);
+            console.log("Signup SSSSSUUUUUCCCCCCEEEEESSSSS!!!!!")
+            redirect();
+            }
+    } catch (error) {
+        console.log(error)
     }
-    if (msg === "Signup Successfully!!"){
-        setSignUpSuccess(true);
-        console.log("Signup SSSSSUUUUUCCCCCCEEEEESSSSS!!!!!")
-        // redirect();
-    }
-  }
-
+}
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />

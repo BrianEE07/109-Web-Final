@@ -49,6 +49,7 @@ const Monitor = (props) => {
     return(
         <Grid className="moniter">
             <img className="moni_logo" src={chicken2}/>
+
             <div className="moni_user">This is {props.user}'s<br/> 
                 electric  GG<br/>
                 {'<-----------------'}<br/>

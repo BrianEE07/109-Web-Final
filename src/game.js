@@ -9,6 +9,8 @@ import Monitor from './Monitor.js';
 import Interaction from './interaction.js';
 import GameOver from './gameover.js';
 import bgm from './sound/titanic.mp3';
+import WSClient from "./wsClient";
+
 // import ChooseChicken from './choosechicken.js';
 // import { set } from 'mongoose';
 // import {getUser, createChicken} from './axios';
@@ -45,12 +47,16 @@ const useStyles = makeStyles({
   }
 })
 function Game() {
-  const [user, setUser] = useState('這個世界的神');
+
+  const { wsmessage, sendFirstStart } = WSClient()
   const [tabValue, setTabValue] = useState(0);
+  const [user, setUser] = useState('這個世界的神');
   const [foodpos, setFoodPos] = useState([]);
-  const [happiness, setHappiness] = useState(90);
   const [hunger, setHunger] = useState(30);
-  const [health, setHealth] = useState(0);
+  const [health, setHealth] = useState(100);
+  const [happiness, setHappiness] = useState(90);
+  const [lifeTime, setLifeTime] = useState(0);
+  const [stage, setStage] = useState(0);
   const [houseHeight, setHouseHeight] = useState(0);
   const [houseWidth, setHouseWidth] = useState(0);
   // const [openChooseChicken, setOpenChooseChicken] = useState(true)
@@ -60,6 +66,36 @@ function Game() {
   const [lifeTime, setLifeTime] = useState(0);
   const houseRef = useRef();
   const classes = useStyles();
+
+
+  // listen incoming wsMessage
+  useEffect(() => {
+    console.log(`Incomming message: { type: ${wsmessage.type}, value: ${wsmessage.value}`)
+    switch(wsmessage.type) {
+      case 'welcome':
+          sendFirstStart(wsmessage.value);
+          break;
+      case 'lifetime':
+          console.log(lifeTime);
+          setLifeTime(wsmessage.value);
+          break;
+      case 'stage':
+          setStage(wsmessage.value);
+          break;
+      case 'hunger':
+          setHunger(wsmessage.value);
+          break;
+      case 'health':
+          setHealth(wsmessage.value);
+          break;
+      case 'happiness':
+          setHappiness(wsmessage.value);
+          break;
+      default:
+          break;
+    }
+  }, [wsmessage])
+  // handle the BGM playing(invisible without 'controls' in <audio>)
 
   // useEffect(async() => {
   //   const data = await getUser();
@@ -78,13 +114,14 @@ function Game() {
   //   sendFirstStart(user);
   // }
   //handle the BGM playing(invisible without 'controls' in <audio>)
+
   useEffect(() => {
     if(!muted)
     playMusic();
     else
     pauseMusic();
   },[muted])
-
+  // listen window resize event
   useEffect(() => {
     if(stage == 3){
       //run game over
@@ -97,7 +134,7 @@ function Game() {
       setHouseWidth(houseRef.current.offsetWidth)
     }
     updateHW()
-    console.log('width:', {houseWidth},  'height:',  {houseHeight});
+    console.log(`width ${houseWidth},  height: ${houseHeight}`);
     window.addEventListener('resize', updateHW)
   }, [houseWidth, houseHeight])
 

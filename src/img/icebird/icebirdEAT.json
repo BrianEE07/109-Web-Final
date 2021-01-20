@@ -1,0 +1,79 @@
+{"frames": {
+
+"icebird11.png":
+{
+	"frame": {"x":0,"y":1214,"w":447,"h":463},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":447,"h":463},
+	"sourceSize": {"w":447,"h":463}
+},
+"icebird12.png":
+{
+	"frame": {"x":0,"y":0,"w":405,"h":402},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":405,"h":402},
+	"sourceSize": {"w":405,"h":402}
+},
+"icebird13.PNG":
+{
+	"frame": {"x":447,"y":1214,"w":447,"h":463},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":447,"h":463},
+	"sourceSize": {"w":447,"h":463}
+},
+"icebird14.PNG":
+{
+	"frame": {"x":405,"y":0,"w":405,"h":402},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":405,"h":402},
+	"sourceSize": {"w":405,"h":402}
+},
+"icebird15.png":
+{
+	"frame": {"x":0,"y":402,"w":425,"h":402},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":425,"h":402},
+	"sourceSize": {"w":425,"h":402}
+},
+"icebird16.png":
+{
+	"frame": {"x":0,"y":804,"w":446,"h":410},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":446,"h":410},
+	"sourceSize": {"w":446,"h":410}
+},
+"icebird17.PNG":
+{
+	"frame": {"x":425,"y":402,"w":425,"h":402},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":425,"h":402},
+	"sourceSize": {"w":425,"h":402}
+},
+"icebird18.PNG":
+{
+	"frame": {"x":446,"y":804,"w":446,"h":410},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":446,"h":410},
+	"sourceSize": {"w":446,"h":410}
+}},
+"animations": {
+	"icebird": ["icebird11.png","icebird12.png","icebird13.PNG","icebird14.PNG","icebird15.png","icebird16.png","icebird17.PNG","icebird18.PNG"]
+},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "icebirdEAT.png",
+	"format": "RGBA8888",
+	"size": {"w":894,"h":1677},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:6c3a11429d994e00253c79177f823439:2a1357277fb15f5e619c972fca1e7914:70948982ef459ca6e64d882d252f0869$"
+}
+}

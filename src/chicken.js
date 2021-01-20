@@ -9,17 +9,42 @@ import mychickenBWJson from './img/mychicken/mychickenBW.json'
 import mychickenEAT from './img/mychicken/mychickenEAT.png'
 import mychickenEATJson from './img/mychicken/mychickenEAT.json'
 
+// type 0 1 2 represent middlechicken type 3 4 5 represent largechicken  6 represent smallchicken
+const chickenFWList = [mychickenFW]
+const chickenFWJsonList = [mychickenFWJson]
+const chickenBWList = [mychickenBW]
+const chickenBWJsonList = [mychickenBWJson]
+const chickenEATList = [mychickenEAT]
+const chickenEATJsonList = [mychickenEATJson]
+
+// import {eaten} from './axios';
 
 const ChickenFW = (props) => {
   const [frames, setFrames] = useState([])
   const willMount = useRef(true);
 
   const loadSpritesheet = () => {
-      const baseTexture = PIXI.BaseTexture.from(mychickenFW);
-      const spritesheet = new PIXI.Spritesheet(baseTexture, mychickenFWJson);
+    if(props.stage == 0){
+      const baseTexture = PIXI.BaseTexture.from(chickenFWList[6]);
+      const spritesheet = new PIXI.Spritesheet(baseTexture, chickenFWJsonList[6]);
       spritesheet.parse(() => {
           setFrames( Object.keys(spritesheet.textures).map((frame) => spritesheet.textures[frame]));
       });
+    }
+    else if(props.stage == 1){
+      const baseTexture = PIXI.BaseTexture.from(chickenFWList[props.type]);
+      const spritesheet = new PIXI.Spritesheet(baseTexture, chickenFWJsonList[props.type]);
+      spritesheet.parse(() => {
+          setFrames( Object.keys(spritesheet.textures).map((frame) => spritesheet.textures[frame]));
+      });
+    }
+    else if (props.stage == 2){
+      const baseTexture = PIXI.BaseTexture.from(chickenFWList[props.type + 3]);
+      const spritesheet = new PIXI.Spritesheet(baseTexture, chickenFWJsonList[props.type + 3]);
+      spritesheet.parse(() => {
+          setFrames( Object.keys(spritesheet.textures).map((frame) => spritesheet.textures[frame]));
+      });
+    }
   }
 
   if (willMount.current) {
@@ -72,11 +97,27 @@ const ChickenBW = (props) => {
   const willMount = useRef(true);
 
   const loadSpritesheet = () => {
-      const baseTexture = PIXI.BaseTexture.from(mychickenBW);
-      const spritesheet = new PIXI.Spritesheet(baseTexture, mychickenBWJson);
+    if(props.stage == 0){
+      const baseTexture = PIXI.BaseTexture.from(chickenBWList[6]);
+      const spritesheet = new PIXI.Spritesheet(baseTexture, chickenBWJsonList[6]);
       spritesheet.parse(() => {
           setFrames( Object.keys(spritesheet.textures).map((frame) => spritesheet.textures[frame]));
       });
+    }
+    else if(props.stage == 1){
+      const baseTexture = PIXI.BaseTexture.from(chickenBWList[props.type]);
+      const spritesheet = new PIXI.Spritesheet(baseTexture, chickenBWJsonList[props.type]);
+      spritesheet.parse(() => {
+          setFrames( Object.keys(spritesheet.textures).map((frame) => spritesheet.textures[frame]));
+      });
+    }
+    else if (props.stage == 2){
+      const baseTexture = PIXI.BaseTexture.from(chickenBWList[props.type + 3]);
+      const spritesheet = new PIXI.Spritesheet(baseTexture, chickenBWJsonList[props.type + 3]);
+      spritesheet.parse(() => {
+          setFrames( Object.keys(spritesheet.textures).map((frame) => spritesheet.textures[frame]));
+      });
+    }
   }
 
   if (willMount.current) {
@@ -128,13 +169,33 @@ const ChickenBW = (props) => {
 const ChickenEAT = (props) => {
   const [frames, setFrames] = useState([])
   const willMount = useRef(true);
+  // const handlestatus = async() => {
+  //   const checkFull = await eaten(username);
+
+  // }
   let counter = 0
   const loadSpritesheet = () => {
-      const baseTexture = PIXI.BaseTexture.from(mychickenEAT);
-      const spritesheet = new PIXI.Spritesheet(baseTexture, mychickenEATJson);
+    if(props.stage == 0){
+      const baseTexture = PIXI.BaseTexture.from(chickenEATList[6]);
+      const spritesheet = new PIXI.Spritesheet(baseTexture, chickenEATJsonList[6]);
       spritesheet.parse(() => {
           setFrames( Object.keys(spritesheet.textures).map((frame) => spritesheet.textures[frame]));
       });
+    }
+    else if(props.stage == 1){
+      const baseTexture = PIXI.BaseTexture.from(chickenEATList[props.type]);
+      const spritesheet = new PIXI.Spritesheet(baseTexture, chickenEATJsonList[props.type]);
+      spritesheet.parse(() => {
+          setFrames( Object.keys(spritesheet.textures).map((frame) => spritesheet.textures[frame]));
+      });
+    }
+    else if (props.stage == 2){
+      const baseTexture = PIXI.BaseTexture.from(chickenEATList[props.type + 3]);
+      const spritesheet = new PIXI.Spritesheet(baseTexture, chickenEATJsonList[props.type + 3]);
+      spritesheet.parse(() => {
+          setFrames( Object.keys(spritesheet.textures).map((frame) => spritesheet.textures[frame]));
+      });
+    }
   }
 
   if (willMount.current) {
@@ -170,6 +231,7 @@ const ChickenEAT = (props) => {
         width={props.chickensize}
         x={props.positionX} 
         y={props.positionY}
+        // onComplete={handlestatus()}
     />
   )
 }
@@ -181,6 +243,12 @@ const Chicken = (props) => {
   const [foodposarr, setFoodPosArr] = useState([])
   const [foodId, setFoodId] = useState(0)
   const [state, setState] = useState('forward')
+
+  useEffect(() => {
+    if(props.stage == 3){
+      setState('dead')
+    }
+  },[props.stage])
 
   useEffect(() => {
       setPositionY(Math.round(props.height / 3.6))
@@ -219,6 +287,8 @@ const Chicken = (props) => {
                 foodposarr={foodposarr}
                 setPositionX={setPositionX} 
                 setState={setState}
+                type ={props.type}
+                stage={props.stage}
             />
             );
         case 'backward':
@@ -232,6 +302,8 @@ const Chicken = (props) => {
                 foodposarr={foodposarr}
                 setPositionX={setPositionX} 
                 setState={setState}
+                type={props.type}
+                stage={props.stage}
             />
             );
         case 'eating':
@@ -247,8 +319,20 @@ const Chicken = (props) => {
                 setFoodPosArr={setFoodPosArr}
                 setHunger={props.setHunger}
                 setState={setState}
+                health={props.health} 
+                hunger={props.hunger} 
+                happiness={props.happiness} 
+                setHealth={props.setHealth} 
+                setHunger={props.setHunger} 
+                setHappiness={props.setHappiness}
+                type={props.type}
+                stage={props.stage}
             />
             );
+            case 'dead':
+              return(
+                <></>
+              )
     }
   }
 

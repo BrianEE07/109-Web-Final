@@ -36,8 +36,15 @@
 }
 
 .moni_logo {
+  width: 5vw;
+  height: 5vw;
+}
+
+.moni_user {
   width: 10%;
   height: 100%;
+  text-align: center;
+  margin-left: -2%;
 }
 
 .moni_name {
@@ -79,9 +86,7 @@
 }
 
 .moni_setting {
-  height: 40%;
-  width: 5%;
-  background-color:#a2dff0;
+  height: 100%;
   display: flex;
   align-items: center;
   text-align: center;
@@ -111,6 +116,20 @@
   display: flex;
 }
 
+.Bbox1 {
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+}
+
+.box1 {
+  width: 50%;
+  height: 200%;
+  align-items: flex-start;
+  flex-direction: row;
+  display: flex;
+}
+
 .visual_block {
   height: 85%;
   width: 100%;
@@ -125,7 +144,7 @@
   width: 75%;
   background-color: transparent;
   align-items: center;
-  flex-direction: row;
+  flex-direction: column;
   display: flex;
   margin-left: 0%;
 }
@@ -202,6 +221,19 @@ button {
   display: flex;
 }
 
+.invisible {
+  border: none;
+  font-size:0;
+  background-color: transparent;
+  height: 0%;
+  width: 0%;
+}
+
+.appear {
+  background-color: thistle;
+  width:100px;
+  height:100%;
+}
 
 /*-----------------------------------------------------------*/
 .App-logo {

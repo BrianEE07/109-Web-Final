@@ -84,7 +84,9 @@ const updateHunger = async (account, hunger, message) => {
     let health = 0
     // let hung = 0
     let newChick = ''
+    let stage = 0
     let chicken = await Chicken.find({"account": account}, {hunger: 1, health: 1})
+    console.log("db", chicken)
     if(message === 'return'){
 
         hunger = chicken[0].hunger
@@ -95,27 +97,31 @@ const updateHunger = async (account, hunger, message) => {
     }else {
         health = chicken[0].health
     }
+    if(health <= 0) stage = 3
     // let updateTime = new Date().getTime()
         await Chicken.update({"account": account}, {
         $set: {
           hunger: hunger,
           health: health,
+          stage: stage
         //   updateTime: updateTime,
         }
       })
             .then(async () => {
-                newChick = await Chicken.find({"account": account}, {hunger:1, health: 1})
+                newChick = await Chicken.find({"account": account}, {hunger:1, health: 1, stage: 1})
                 msg = `New Chicken ${account} updated`;
                 console.log(msg);
                 console.log("Newchicken: ", newChick[0]) 
+                
             })
             .catch(err => {
                 if (err.errors && err.errors.chicken && err.errors.chicken.kind === 'unique') {
                     msg = `New Chicken \"${account}\" duplicate`;
                 }
                 console.log(msg); 
+                
             }) 
-    return newChick
+            return newChick[0]
 }
 const updateHappiness = async (account, happiness, updateTime) => { 
     // const chicken = new Chicken({name, health, hunger, createTime}); 
@@ -144,34 +150,40 @@ const saveNewChicken = async (account, name, health, happiness, hunger, createTi
     const chicken = new Chicken({account, name, health, happiness, hunger, createTime, lifeTime, stage}); 
     let msg = "";
     console.log('hereeeeeee')
-    // const c = await Chicken.find({account: account});
-    // console.log(c)
-    // if(c === []) return chicken
-    // await Chicken.deleteMany({account: account})
-    const chickenList = await Chicken.find();
-    console.log(chickenList)
-    await chicken.save()
-        .then(() => {
-            msg = `New Chicken ${name} saved`;
-            console.log(msg); 
-            console.log('fhwef',chickenList)
-        })
-        .catch(err => {
-            if (err.errors && err.errors.chicken && err.errors.chicken.kind === 'unique') {
-                msg = `New Chicken \"${name}\" duplicate`;
-            }
-            console.log(msg); 
-        }) 
-    console.log("create: ", chicken)
-    return chicken;
+    const c = await Chicken.find({account: account});
+    console.log("db",c)
+    if(c.length === 0) {
+        
+    // const chickenList = await Chicken.find();
+    // console.log(chickenList)
+            await chicken.save()
+                .then(() => {
+                    msg = `New Chicken ${name} saved`;
+                    console.log(msg); 
+                    // console.log('fhwef',chickenList)
+                })
+                .catch(err => {
+                    if (err.errors && err.errors.chicken && err.errors.chicken.kind === 'unique') {
+                        msg = `New Chicken \"${name}\" duplicate`;
+                    }
+                    console.log(msg); 
+                }) 
+            console.log("create: ", chicken)
+            return chicken;
+        }
+
+    else  {
+        return c
+    
+    }
 };
 const getUser = async (account) => { 
     let msg = "";
     const chickenList = await Chicken.find({"account":account})
     console.log('fhwef',chickenList)
-    const chicken = chickenList[0]
-    console.log("dead: ", chicken)
-    return chicken;
+    // const chicken = chickenList[0]
+    // console.log("dead: ", chicken)
+    return chickenList;
 };
 const changeAC = () => {
 

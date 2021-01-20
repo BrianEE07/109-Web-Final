@@ -48,7 +48,8 @@ router.post('/updateHunger', async (req, res) => {
 
     const msg = await updateHunger(req.body.account, req.body.hunger, req.body.message)
     const chicken = await Chicken.find({account: req.body.account})
-    console.log(chicken)
+    console.log("router hunger",msg)
+    console.log("router hunger",chicken)
 
     console.log(`Name : ${req.body.name}`);
     // console.log(`Password : ${req.body.password}`);
@@ -58,7 +59,7 @@ router.post('/updateHunger', async (req, res) => {
     // else if (foundPwdIdx === -1) msg = "Password incorrect.";
     // else msg = "Create Successfully!!";
 
-    res.status(200).send(msg);
+    res.status(200).send(chicken);
     console.log(msg);
 })
 router.post('/updateHealth', async (req, res) => {
@@ -83,7 +84,7 @@ router.post('/updateHealth', async (req, res) => {
 router.post('/getUser', async (req, res) => {
     const message = await getUser(req.body.account);
     // print database users
-    console.log(message)
+    console.log("router: ", message)
     res.status(200).send(message);
     let msg = "";
     // if (message === `New Chicken ${req.body.name} saved`) {
@@ -95,8 +96,9 @@ router.post('/getUser', async (req, res) => {
 router.post('/createChicken', async (req, res) => {
     const message = await saveNewChicken(req.body.account, req.body.name, req.body.health, req.body.happiness, req.body.hunger, req.body.createTime, req.body.lifeTime, req.body.stage);
     // print database users
+    console.log("here", req.body)
     const chickenList = await Chicken.find();
-    console.log(message)
+    console.log("router", message)
     res.status(200).send(message);
     let msg = "";
     if (message === `New Chicken ${req.body.name} saved`) {

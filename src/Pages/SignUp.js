@@ -12,7 +12,7 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Chicken from '../img/monitor/chicken2.png';
+import Chicken from '../img/login/chicken2.png';
 // import { signUp } from './axios';
 import { useHistory } from "react-router-dom";
 import Alert from '@material-ui/lab/Alert';

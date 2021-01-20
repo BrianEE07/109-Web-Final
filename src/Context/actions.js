@@ -9,10 +9,9 @@ export default async function checkUser(dispatch, LoginPayload) {
   try {
     dispatch({ type: 'REQUEST_LOGIN' });
     const { data : msg } = await instance.post('/login', LoginPayload)
-    window.localStorage.setItem("account", LoginPayload.account)
+    // window.localStorage.setItem("account", LoginPayload.account)
     // localStorage.removeItem('account');
-    window.localStorage.setItem("password", LoginPayload.password)
-    console.log(window.localStorage.getItem("password"))
+    // console.log(window.localStorage.getItem("password"))
     console.log(msg)
     if(msg === 'Account Incorrect'){
       dispatch({ type: 'LOGIN_ERROR'});
@@ -32,10 +31,9 @@ export  async function signUp(dispatch, signUpPayload) {
   //   headers: { 'Content-Type': 'application/json' },
   //   body: JSON.stringify(loginPayload),
   // };
-  window.localStorage.setItem("email", signUpPayload.email)
-  window.localStorage.setItem("account", signUpPayload.account)
-  window.localStorage.setItem("password", signUpPayload.password)
-  window.localStorage.setItem("chicken", signUpPayload.chicken)
+  // window.localStorage.setItem("email", signUpPayload.email)
+  // window.localStorage.setItem("account", signUpPayload.account)
+  // window.localStorage.setItem("chicken", signUpPayload.chicken)
   try {
     dispatch({ type: 'REQUEST_SIGNUP' });
     const { data : msg } = await instance.post('/signup', signUpPayload)

@@ -46,6 +46,21 @@ const useStyles = makeStyles({
   }
 })
 function Game() {
+<<<<<<< HEAD
+  const [user, setUser] = useState('林宏軒');
+  const [tabValue, setTabValue] = useState(0);
+  const [foodpos, setFoodPos] = useState([]);
+  const [inter, setInter] = useState(0);
+  const [life, setLife] = useState(90);
+  const [hunger, setHunger] = useState(30);
+  const [health, setHealth] = useState(0);
+  const [houseHeight, setHouseHeight] = useState(0);
+  const [houseWidth, setHouseWidth] = useState(0);
+  const [muted, setMuted] = useState(false);
+  const houseRef = useRef();
+  const classes = useStyles();
+=======
+>>>>>>> 77bb14f3c50f5c1edec5c905b8c3d8da80a882ed
 
   const { wsmessage, sendGameStart, sendLogOut } = WSClient()
   const [tabValue, setTabValue] = useState(0);     //
@@ -119,6 +134,11 @@ function Game() {
     else
     pauseMusic();
   },[muted])
+<<<<<<< HEAD
+useEffect(() => {
+  console.log(localStorage.getItem("account"))
+}, [])
+=======
   // listen window resize event
   useEffect(() => {
     if(stage == 3){
@@ -126,6 +146,7 @@ function Game() {
     }
   },[stage])
 
+>>>>>>> 77bb14f3c50f5c1edec5c905b8c3d8da80a882ed
   useEffect(() => {
     const updateHW = () => {
       setHouseHeight(houseRef.current.offsetHeight)

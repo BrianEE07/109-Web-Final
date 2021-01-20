@@ -10,7 +10,7 @@ import WebSocket from 'ws';
 import GG from './game.js';
 // 之後拿掉
 import { saveNewUser, clearDB, printDB } from './core/userDB.js'
-import { saveNewChicken, printChDB, updateHunger, clearChDB, updateHP } from './core/chickenDB.js'
+import { saveNewChicken, printChDB, updateHunger, clearChDB, updateHealth, updateHappiness, getUser , updateLifeTime, updateStage, } from './core/chickenDB.js'
 // 之後拿掉
 const app = express();
 const server = http.createServer(app)
@@ -46,7 +46,7 @@ db.once('open', async () => {
     console.log('MongoDB connected!');
     app.listen(port, () =>
         console.log(`Web Final app listening on port ${port}!`));
-
+    
     var today = new Date();
     const month = today.getMonth()+1
     const date = today.getDate()
@@ -55,22 +55,33 @@ db.once('open', async () => {
     const second = today.getSeconds()
     var time = month+'-'+ date+'-'+ hour+ ":" + minute + ":" + second;
     var t = today.getTime()
+    // const account = localStorage.getItem('')
+    const account = "peter"
+    const name = 0
     await clearChDB();
-    await saveNewChicken("peter", 0, 100, t);
-    var t1 = today.getTime()
-    await printChDB();
-    await updateHunger("peter", 20, t1);
+    // const chick = await saveNewChicken(account, name, 100, 100, 180, t, 0, 0);
+    // await getUser(account)
+    // var t1 = today.getTime()
+    // await printChDB();
+    // await updateHunger(account, 20, "no return");
+    // await updateLifeTime(account, 3);
     // await saveNewUser("", "", "", []);
     // await saveNewUser("brian_email", "brian", "brianpassword", []);
     // await saveNewUser("ray_email", "ray", "raypassword", []);
     // await saveNewUser("ric_email", "ric", "ricpassword", []);
     // await saveNewUser("ric_email", "ric", "ricpassword", []);
+    // await printChDB();
+    // await updateHP("peter", 40, t1);
+    // await printChDB();
+    // await updateHappiness("peter", 3000, t1);
+
     await printChDB();
-    await updateHP("peter", 40, t1);
-    await printChDB();
+    
     // await printDB();
-    console.log(t)
-    console.log(t1)
+
+
+    // console.log(t)
+    // console.log(t1)
     // WebSocket
     wss.on('connection', (ws) => {
         const sendData = (data) => {

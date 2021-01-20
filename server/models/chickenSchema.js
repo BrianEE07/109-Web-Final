@@ -3,11 +3,14 @@ import uniqueValidator from 'mongoose-unique-validator'
 const Schema = mongoose.Schema
 const ChickenSchema = new Schema({
     
-    name: {type: String, unique: false},
-    hp: {type: Number, unique: false},
+    account: String,
+    name: {type: Number, unique: false},
+    health: {type: Number, unique: false},
+    happiness: Number,
     hunger: Number,
-    createTime: Number
-    
+    createTime: Number,
+    lifeTime: Number,
+    stage: Number
 });
 ChickenSchema.plugin(uniqueValidator);
 const Chicken = mongoose.model('Chicken', ChickenSchema);

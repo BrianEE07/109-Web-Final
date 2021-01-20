@@ -2,10 +2,15 @@ import { Stage, PixiComponent, Container, Sprite, AnimatedSprite, useTick, useAp
 import React, { Component, useState, useRef, useEffect} from 'react';
 import * as PIXI from 'pixi.js';
 import Food from './food.js'
-import mychickenFW from './img/mychicken/mychickenFW.png'
-import mychickenFWJson from './img/mychicken/mychickenFW.json'
+import mychickenFW from './fatchicken.png'
+import mychickenFWJson from './fatchicken.json'
 import mychickenBW from './img/mychicken/mychickenBW.png'
 import mychickenBWJson from './img/mychicken/mychickenBW.json'
+<<<<<<< HEAD
+import mychickenEAT from './eatchicken.png'
+import mychickenEATJson from './eatchicken.json'
+
+=======
 import mychickenEAT from './img/mychicken/mychickenEAT.png'
 import mychickenEATJson from './img/mychicken/mychickenEAT.json'
 import icebirdFW from './img/icebird/icebirdFW.png'
@@ -44,6 +49,7 @@ import littlebirdBW from './img/littlebird/littlebirdBW.png'
 import littlebirdBWJson from './img/littlebird/littlebirdBW.json'
 import littlebirdEAT from './img/littlebird/littlebirdEAT.png'
 import littlebirdEATJson from './img/littlebird/littlebirdEAT.json'
+>>>>>>> 77bb14f3c50f5c1edec5c905b8c3d8da80a882ed
 
 // type 0 1 2 represent middlechicken type 3 4 5 represent largechicken  6 represent smallchicken
 const chickenFWList = [mychickenFW, icebirdFW, fatchickenFW, mychicken_bigFW, icebird_bigFW, fatchicken_bigFW, littlebirdFW]

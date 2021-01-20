@@ -7,16 +7,17 @@ const AppRoutes = ({ component: Component, path, isPrivate, ...rest }) => {
  
     const userDetails = useAuthState()
     console.log(userDetails)
+    console.log(isPrivate, Boolean(userDetails.success))
     return (
         <Route
             path={path}
             render={props =>
-                isPrivate && !Boolean(userDetails.success) ? (
+                (isPrivate && !Boolean(userDetails.success)) ? (
                     <Redirect
                         to={{ pathname: "/login" }}
                     />
                 ) : 
-                    (  <Component {...props} />)
+                    (<Component {...props} />)
             }
             {...rest}
         />

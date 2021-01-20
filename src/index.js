@@ -19,7 +19,6 @@ import SignUp from "./Pages/SignUp";
      <Route path="/signup" component={SignUp} />
      <Route path="/game" component={Game} />
      <Route path="/setting" component={Setting}/>
-     <Route path="/login" component={Login} />
 
    </Switch>
    </BrowserRouter>,

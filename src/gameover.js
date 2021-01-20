@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './App.css';
+import { Link } from 'react-router-dom';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -9,8 +10,7 @@ import MuiDialogActions from '@material-ui/core/DialogActions';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
-import icebird from './img/icebird/icebird1.png'
-import { blue } from '@material-ui/core/colors';
+import deadchicken from './img/deadchicken/deadchicken.png';
 const styles = (theme) => ({
     root: {
       margin: 0,
@@ -69,7 +69,7 @@ const GameOver = (props) => {
           </DialogTitle>
           <DialogContent dividers>
             <Typography gutterBottom>
-                <img src={icebird} width="30%" height="30%"/><br/>
+                <img src={deadchicken} width="30%" height="30%"/><br/>
                 Game Over!!<br/>
                 You bird has lived for {props.lifeTime}s.
             </Typography>
@@ -78,9 +78,16 @@ const GameOver = (props) => {
             </Typography>
           </DialogContent>
           <DialogActions>
-            <Button autoFocus onClick={handleClose} color="primary">
-              Save changes
+            <Button autoFocus onClick={() => { setOpen(false);props.setOpenChooseChicken(true);}} color="secondary"><br/>
+              Select a new chicken!
             </Button>
+          </DialogActions>
+          <DialogActions>
+            <Link to='/login'>
+              <Button autoFocus color="primary">
+                Restart!
+              </Button>
+            </Link>
           </DialogActions>
         </Dialog>
       </div>

@@ -97,8 +97,8 @@ const SettingDrawer = (props) => {
             </Typography>
           </DialogContent>
           <DialogActions>
-            <Button autoFocus onClick={handleClose} color="primary">
-              OK
+            <Button autoFocus onClick={props.logout} color="primary">
+              Log out
             </Button>
           </DialogActions>
         </Dialog>

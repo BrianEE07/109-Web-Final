@@ -1,12 +1,13 @@
 import express from 'express'; 
-const router = express.Router();
+
 import User from '../models/userSchema.js'
 import { saveNewUser } from '../core/userDB.js'
-
+const router = express.Router();
 router.post('/login', async (req, res) => {
     // print database users
     const userList = await User.find()
     console.log(userList)
+    // MONGO_URL=mongodb+srv://peter:aabbccv@cluster0.4teca.mongodb.net/Cluster0?retryWrites=true&w=majority
 
     let msg = "";
     console.log(`Account : ${req.body.account}`);

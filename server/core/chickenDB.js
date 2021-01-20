@@ -144,13 +144,13 @@ const saveNewChicken = async (account, name, health, happiness, hunger, createTi
     const chicken = new Chicken({account, name, health, happiness, hunger, createTime, lifeTime, stage}); 
     let msg = "";
     console.log('hereeeeeee')
-    const c = await Chicken.find({account: account});
-    console.log(c)
-    if(c === []) return chicken
+    // const c = await Chicken.find({account: account});
+    // console.log(c)
+    // if(c === []) return chicken
     // await Chicken.deleteMany({account: account})
     const chickenList = await Chicken.find();
     console.log(chickenList)
-    await Chicken.insertMany([chicken])
+    await chicken.save()
         .then(() => {
             msg = `New Chicken ${name} saved`;
             console.log(msg); 

@@ -46,21 +46,7 @@ const useStyles = makeStyles({
   }
 })
 function Game() {
-<<<<<<< HEAD
-  const [user, setUser] = useState('林宏軒');
-  const [tabValue, setTabValue] = useState(0);
-  const [foodpos, setFoodPos] = useState([]);
-  const [inter, setInter] = useState(0);
-  const [life, setLife] = useState(90);
-  const [hunger, setHunger] = useState(30);
-  const [health, setHealth] = useState(0);
-  const [houseHeight, setHouseHeight] = useState(0);
-  const [houseWidth, setHouseWidth] = useState(0);
-  const [muted, setMuted] = useState(false);
-  const houseRef = useRef();
-  const classes = useStyles();
-=======
->>>>>>> 77bb14f3c50f5c1edec5c905b8c3d8da80a882ed
+
 
   const { wsmessage, sendGameStart, sendLogOut } = WSClient()
   const [tabValue, setTabValue] = useState(0);     //
@@ -72,15 +58,16 @@ function Game() {
   const [lifeTime, setLifeTime] = useState(0);     //how old is the chicken?
   const [houseHeight, setHouseHeight] = useState(0);    //the size of animation
   const [houseWidth, setHouseWidth] = useState(0);      //the size of animation
-  const [openChooseChicken, setOpenChooseChicken] = useState(true);  //open the choosechicken menu
+  const [openChooseChicken, setOpenChooseChicken] = useState(false);  //open the choosechicken menu
   const [muted, setMuted] = useState(false);        //is the BGM muted?
-  const [stage, setStage] = useState(1);            //evolution of chicken
+  const [stage, setStage] = useState(0);            //evolution of chicken
   const [type, setType] = useState(0);              //type of chicken
+  const [over, setOver] = useState(false);
   const houseRef = useRef();                        //house absolute position
   const classes = useStyles();                      //handle some style
-  const logout = () => {
-    sendLogOut(user);
-  }
+  // const logout = () => {
+  //   sendLogOut(user);
+  // }
 
   // listen incoming wsMessage
   useEffect(() => {
@@ -112,41 +99,53 @@ function Game() {
 
   useEffect(async() => {
     const data = await getUser();
-      setUser(data.account);
-      setHealth(data.health);
-      setHappiness(data.happiness);
-      setHunger(data.hunger);
-      setType(data.name);
-      sendGameStart(user);
-    if(type == 4){
+    console.log('data:' , data, window.localStorage.getItem("account"))
+    if(data.length === 0){
+      setUser(window.localStorage.getItem("account"));
+      console.log('hewkfhewifeiwlvjil:' , data, user)
+      setHealth(100);
+      setHappiness(100);
+      setHunger(180);
+      setStage(0);
       setOpenChooseChicken(true);
+      // sendGameStart(user);
+      
+    }else {
+    console.log("data ", data[0])
+    
+    setOpenChooseChicken(false);
+      setUser(data[0].account);
+      setHealth(data[0].health);
+      setHappiness(data[0].happiness);
+      setHunger(data[0].hunger);
+      setType(data[0].name);
+      setStage(data[0].stage);
+      
+      sendGameStart(user);
     }
   },[])
   const create = async() => {
+    console.log("typeeeee", type)
+    console.log("user: ", user)
     await createChick({account: user, name: type});
     //叫范永為拿function來><><><><><><><><<><<><><><><><><><><<<<><><><><><<><<><
   }
   //handle the BGM playing(invisible without 'controls' in <audio>)
-
+  
   useEffect(() => {
     if(!muted)
     playMusic();
     else
     pauseMusic();
   },[muted])
-<<<<<<< HEAD
-useEffect(() => {
-  console.log(localStorage.getItem("account"))
-}, [])
-=======
+
   // listen window resize event
   useEffect(() => {
     if(stage == 3){
       //run game over
     }
   },[stage])
-
->>>>>>> 77bb14f3c50f5c1edec5c905b8c3d8da80a882ed
+console.log("type: ", type)
   useEffect(() => {
     const updateHW = () => {
       setHouseHeight(houseRef.current.offsetHeight)
@@ -165,12 +164,13 @@ useEffect(() => {
   return (
     <div className="container_bg">
     <div className="container">
-      <ChooseChicken openChooseChicken={openChooseChicken} setType={setType} type={type} create={create}/> user={user}
-      <Monitor user={user} health={health} hunger={hunger} happiness={happiness} setMuted={setMuted} muted={muted} type={type} stage={stage} lifeTime={lifeTime} logout={logout} />
+      <ChooseChicken openChooseChicken={openChooseChicken} setType={setType} type={type} create={create} user={user}/> 
+  {/*<Monitor user={user} health={health} hunger={hunger} happiness={happiness} setMuted={setMuted} muted={muted} type={type} stage={stage} lifeTime={lifeTime} logout={logout} />*/}
+      <Monitor user={user} health={health} hunger={hunger} happiness={happiness} setMuted={setMuted} muted={muted} type={type} stage={stage} lifeTime={lifeTime} />
       <Grid className="visual_block">
         <Grid className="house" onClick={onClickScreen} ref={houseRef}>
-          <GameOver setOpenChooseChicken={setOpenChooseChicken} stage={stage} restart={restart} lifeTime= {lifeTime}/>
-          <Chicken height={houseHeight} width={houseWidth} foodpos={foodpos} setFoodPos={setFoodPos} health={health} hunger={hunger} happiness={happiness} setHealth={setHealth} setHunger={setHunger} setHappiness={setHappiness} stage={stage} type={type}/>
+          <GameOver over={over} stage={stage} restart={restart} lifeTime= {lifeTime}/>
+          <Chicken height={houseHeight} width={houseWidth} foodpos={foodpos} setFoodPos={setFoodPos} health={health} user={user} hunger={hunger} happiness={happiness} setHealth={setHealth} setHunger={setHunger} setHappiness={setHappiness} setStage={setStage} stage={stage} type={type}/>
         </Grid>
         <Interaction classes={classes} tabValue={tabValue} setTabValue={setTabValue}/>
       </Grid>

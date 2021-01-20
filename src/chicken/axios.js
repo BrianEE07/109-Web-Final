@@ -3,8 +3,9 @@ import axios from 'axios'
 const instance = axios.create({ baseURL: 'http://localhost:4000/chickens' })
 
 const eat = async ({account, hunger, health, message}) => {
+  console.log(account, hunger, health, message)
   const { data : msg } = await instance.post('/updateHunger', {account, hunger, health, message})
-
+  console.log("msg", msg)
   return msg
 }
 const loveMore = async ({name, happiness, updateTime}) => {
@@ -24,13 +25,13 @@ const createChick = async ({account, name}) => {
   //  if(m)
     const health = 100
     const happiness = 100
-    const hunger = 100
+    const hunger = 90
     const createTime = new Date().getTime()
     const lifeTime = 0
     const stage = 0
     console.log("this is", account, name)
     const { data : msg } = await instance.post('/createChicken', {account, name, health, happiness, hunger, createTime, lifeTime, stage})
-    console.log(msg)
+    console.log("axios", msg)
   return msg
 }
 const getUser = async () => {
@@ -44,6 +45,7 @@ const getUser = async () => {
   // const stage = 0
 
   const { data : msg } = await instance.post('/getUser', {account})
+  console.log("axios", msg)
 
 return msg
 }

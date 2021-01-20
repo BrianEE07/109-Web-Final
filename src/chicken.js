@@ -2,54 +2,51 @@ import { Stage, PixiComponent, Container, Sprite, AnimatedSprite, useTick, useAp
 import React, { Component, useState, useRef, useEffect} from 'react';
 import * as PIXI from 'pixi.js';
 import Food from './food.js'
-import mychickenFW from './fatchicken.png'
-import mychickenFWJson from './fatchicken.json'
+import mychickenFW from './img/mychicken/mychickenFW.png'
+import mychickenFWJson from './img/mychicken/mychickenFW.json'
 import mychickenBW from './img/mychicken/mychickenBW.png'
 import mychickenBWJson from './img/mychicken/mychickenBW.json'
-<<<<<<< HEAD
-import mychickenEAT from './eatchicken.png'
-import mychickenEATJson from './eatchicken.json'
-
-=======
 import mychickenEAT from './img/mychicken/mychickenEAT.png'
 import mychickenEATJson from './img/mychicken/mychickenEAT.json'
+
 import icebirdFW from './img/icebird/icebirdFW.png'
 import icebirdFWJson from './img/icebird/icebirdFW.json'
 import icebirdBW from './img/icebird/icebirdBW.png'
 import icebirdBWJson from './img/icebird/icebirdBW.json'
 import icebirdEAT from './img/icebird/icebirdEAT.png'
 import icebirdEATJson from './img/icebird/icebirdEAT.json'
-// import fatchickenFW from './img/fatchicken/fatchickenFW.png'
-// import fatchickenFWJson from './img/fatchicken/fatchickenFW.json'
-// import fatchickenBW from './img/fatchicken/fatchickenBW.png'
-// import fatchickenBWJson from './img/fatchicken/fatchickenBW.json'
-// import fatchickenEAT from './img/fatchicken/fatchickenEAT.png'
-// import fatchickenEATJson from './img/fatchicken/fatchickenEAT.json'
-// import mychicken_bigFW from './img/mychicken/mychickenFW.png'
-// import mychicken_bigFWJson from './img/mychicken/mychickenFW.json'
-// import mychicken_bigBW from './img/mychicken/mychickenBW.png'
-// import mychicken_bigBWJson from './img/mychicken/mychickenBW.json'
-// import mychicken_bigEAT from './img/mychicken/mychickenEAT.png'
-// import mychicken_bigEATJson from './img/mychicken/mychickenEAT.json'
+
+import fatchickenFW from './img/fatchicken/fatchickenFW.png'
+import fatchickenFWJson from './img/fatchicken/fatchickenFW.json'
+import fatchickenBW from './img/fatchicken/fatchickenBW.png'
+import fatchickenBWJson from './img/fatchicken/fatchickenBW.json'
+import fatchickenEAT from './img/fatchicken/fatchickenEAT.png'
+import fatchickenEATJson from './img/fatchicken/fatchickenEAT.json'
+import mychicken_bigFW from './img/mychicken/mychickenFW.png'
+import mychicken_bigFWJson from './img/mychicken/mychickenFW.json'
+import mychicken_bigBW from './img/mychicken/mychickenBW.png'
+import mychicken_bigBWJson from './img/mychicken/mychickenBW.json'
+import mychicken_bigEAT from './img/mychicken/mychickenEAT.png'
+import mychicken_bigEATJson from './img/mychicken/mychickenEAT.json'
 import icebird_bigFW from './img/icebird_big/icebird_bigFW.png'
 import icebird_bigFWJson from './img/icebird_big/icebird_bigFW.json'
 import icebird_bigBW from './img/icebird_big/icebird_bigBW.png'
 import icebird_bigBWJson from './img/icebird_big/icebird_bigBW.json'
 import icebird_bigEAT from './img/icebird_big/icebird_bigEAT.png'
 import icebird_bigEATJson from './img/icebird_big/icebird_bigEAT.json'
-// import fatchicken_bigFW from './img/fatchicken_big/fatchicken_bigFW.png'
-// import fatchicken_bigFWJson from './img/fatchicken_big/fatchicken_bigFW.json'
-// import fatchicken_bigBW from './img/fatchicken_big/fatchicken_bigBW.png'
-// import fatchicken_bigBWJson from './img/fatchicken_big/fatchicken_bigBW.json'
-// import fatchicken_bigEAT from './img/fatchicken_big/fatchicken_bigEAT.png'
-// import fatchicken_bigEATJson from './img/fatchicken_big/fatchicken_bigEAT.json'
+import fatchicken_bigFW from './img/fatchicken_big/fatchicken_bigFW.png'
+import fatchicken_bigFWJson from './img/fatchicken_big/fatchicken_bigFW.json'
+import fatchicken_bigBW from './img/fatchicken_big/fatchicken_bigBW.png'
+import fatchicken_bigBWJson from './img/fatchicken_big/fatchicken_bigBW.json'
+import fatchicken_bigEAT from './img/fatchicken_big/fatchicken_bigEAT.png'
+import fatchicken_bigEATJson from './img/fatchicken_big/fatchicken_bigEAT.json'
 import littlebirdFW from './img/littlebird/littlebirdFW.png'
 import littlebirdFWJson from './img/littlebird/littlebirdFW.json'
 import littlebirdBW from './img/littlebird/littlebirdBW.png'
 import littlebirdBWJson from './img/littlebird/littlebirdBW.json'
 import littlebirdEAT from './img/littlebird/littlebirdEAT.png'
 import littlebirdEATJson from './img/littlebird/littlebirdEAT.json'
->>>>>>> 77bb14f3c50f5c1edec5c905b8c3d8da80a882ed
+import {eat} from './chicken/axios';
 
 // type 0 1 2 represent middlechicken type 3 4 5 represent largechicken  6 represent smallchicken
 const chickenFWList = [mychickenFW, icebirdFW, fatchickenFW, mychicken_bigFW, icebird_bigFW, fatchicken_bigFW, littlebirdFW]
@@ -59,7 +56,7 @@ const chickenBWJsonList = [mychickenBWJson, icebirdBWJson, fatchickenBWJson, myc
 const chickenEATList = [mychickenEAT, icebirdEAT, fatchickenEAT, icebird_bigEAT, mychicken_bigEAT, fatchicken_bigEAT, littlebirdEAT]
 const chickenEATJsonList = [mychickenEATJson, icebirdEATJson, fatchickenEATJson, mychicken_bigEATJson, icebird_bigEATJson, fatchicken_bigEATJson, littlebirdEATJson]
 
-// import {eaten} from './axios';
+
 
 const ChickenFW = (props) => {
   const [frames, setFrames] = useState([])
@@ -67,6 +64,7 @@ const ChickenFW = (props) => {
 
   const loadSpritesheet = () => {
     if(props.stage == 0){
+      console.log("this is ", props.stage)
       const baseTexture = PIXI.BaseTexture.from(chickenFWList[6]);
       const spritesheet = new PIXI.Spritesheet(baseTexture, chickenFWJsonList[6]);
       spritesheet.parse(() => {
@@ -74,6 +72,7 @@ const ChickenFW = (props) => {
       });
     }
     else if(props.stage == 1){
+      console.log("this issssssss ", props.stage)
       const baseTexture = PIXI.BaseTexture.from(chickenFWList[props.type]);
       const spritesheet = new PIXI.Spritesheet(baseTexture, chickenFWJsonList[props.type]);
       spritesheet.parse(() => {
@@ -188,6 +187,7 @@ const ChickenBW = (props) => {
             props.setState('forward')
         }
     }
+    
   })
 
   if (frames.length === 0) {
@@ -210,6 +210,7 @@ const ChickenBW = (props) => {
 
 const ChickenEAT = (props) => {
   const [frames, setFrames] = useState([])
+  const [data, setData] = useState([])
   const willMount = useRef(true);
   // const handlestatus = async() => {
   //   const checkFull = await eat({username: props.user, hunger: props.hunger,health: props.health, message: 'return'});
@@ -240,21 +241,32 @@ const ChickenEAT = (props) => {
     }
   }
 
+  useEffect(async ()=> {
+    const checkFull = await eat({account: props.user, hunger: props.hunger,health: props.health, message: 'return'});
+    setData(checkFull);
+    console.log("ferjgiehjfi", checkFull[0])
+  },[])
   if (willMount.current) {
       loadSpritesheet();
       willMount.current = false;
+      
   }
 
-  useTick(delta => {
+  useTick( async (delta) => {
       counter += delta;
-      if (counter >= 200) {
+      
+       
+      if (counter >= 100) {
             const newfoodarr = [...props.foodarr]
             const newfoodposarr = [...props.foodposarr]
             newfoodarr.shift() // remove first element
             newfoodposarr.shift()
             props.setFoodArr(newfoodarr)
             props.setFoodPosArr(newfoodposarr)
-            props.setHunger(props.hunger + 10)
+            props.setHunger(data[0].hunger)
+            props.setHealth(data[0].health)
+            props.setStage(data[0].stage)
+           
             props.setState('forward')
             // axios.get('/eating').then((res) => setHunger(res.data))
       }
@@ -273,7 +285,6 @@ const ChickenEAT = (props) => {
         width={props.chickensize}
         x={props.positionX} 
         y={props.positionY}
-        // onComplete={handlestatus()}
     />
   )
 }
@@ -369,6 +380,8 @@ const Chicken = (props) => {
                 setHappiness={props.setHappiness}
                 type={props.type}
                 stage={props.stage}
+                user={props.user}
+                setStage={props.setStage}
             />
             );
             case 'dead':

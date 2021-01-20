@@ -1,0 +1,39 @@
+{"frames": {
+
+"fatchicken_big6.png":
+{
+	"frame": {"x":0,"y":0,"w":210,"h":383},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":383},
+	"sourceSize": {"w":210,"h":383}
+},
+"fatchicken_big7.png":
+{
+	"frame": {"x":210,"y":0,"w":306,"h":302},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":306,"h":302},
+	"sourceSize": {"w":306,"h":302}
+},
+"fatchicken_big8.png":
+{
+	"frame": {"x":516,"y":0,"w":381,"h":431},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":381,"h":431},
+	"sourceSize": {"w":381,"h":431}
+}},
+"animations": {
+	"fatchicken_big": ["fatchicken_big6.png","fatchicken_big7.png","fatchicken_big8.png"]
+},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "fatchicken_bigEAT.png",
+	"format": "RGBA8888",
+	"size": {"w":897,"h":431},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:141847abc5c289157f273cf6742411b7:372e251a7cd71ac06e2940460fafed28:4e31b291f8534b4980551abd71f76b9f$"
+}
+}

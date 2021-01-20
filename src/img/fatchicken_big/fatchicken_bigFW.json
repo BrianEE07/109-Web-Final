@@ -1,0 +1,60 @@
+{"frames": {
+
+"fatchicken_big1.png":
+{
+	"frame": {"x":0,"y":0,"w":247,"h":356},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":247,"h":356},
+	"sourceSize": {"w":247,"h":356},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"fatchicken_big2.png":
+{
+	"frame": {"x":247,"y":0,"w":239,"h":356},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":239,"h":356},
+	"sourceSize": {"w":239,"h":356},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"fatchicken_big3.png":
+{
+	"frame": {"x":486,"y":0,"w":247,"h":356},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":247,"h":356},
+	"sourceSize": {"w":247,"h":356},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"fatchicken_big4.png":
+{
+	"frame": {"x":733,"y":0,"w":239,"h":356},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":239,"h":356},
+	"sourceSize": {"w":239,"h":356},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"fatchicken_big5.png":
+{
+	"frame": {"x":972,"y":0,"w":289,"h":368},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":289,"h":368},
+	"sourceSize": {"w":289,"h":368},
+	"anchor": {"x":0.5,"y":0.5}
+}},
+"animations": {
+	"fatchicken_big": ["fatchicken_big1.png","fatchicken_big2.png","fatchicken_big3.png","fatchicken_big4.png","fatchicken_big5.png"]
+},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "fatchicken_bigFW.png",
+	"format": "RGBA8888",
+	"size": {"w":1261,"h":368},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:127bd157cd98b901171af4a1f4d65eb0:27eede8fd0e0dcea79d9fbb09d0a1614:d8b5da3f43539251904444e8c8a837d6$"
+}
+}

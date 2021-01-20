@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -23,7 +23,9 @@ const styles = (theme) => ({
   });
 
   const DialogTitle = withStyles(styles)((props) => {
+   
     const { children, classes, onClose, ...other } = props;
+    console.log("props: ", props)
     return (
       <MuiDialogTitle disableTypography className={classes.root} {...other}>
         <Typography variant="h6">{children}</Typography>
@@ -51,14 +53,22 @@ const styles = (theme) => ({
   
 const ChooseChicken = (props) => {
     const [open, setOpen] = React.useState(props.openChooseChicken);
-  
-
+    // const setType = props.setType;
+    console.log("props.typel: ", props)
+    console.log("open: ", open)
+    useEffect(() => {
+      setOpen(props.openChooseChicken)
+    }, [props.openChooseChicken])
     const handleClose = () => {
-        create();
+        props.create();
         setOpen(false);
     };
-    
+    // const setType = (num) => {
+    //   console.log(num)
+    //   props.setType(num)
+    // }
     function handleChicken(choice){
+      console.log("choice", choice)
         if(choice == 0){
             return('黃色的看甚麼看')
         }
@@ -80,15 +90,15 @@ const ChooseChicken = (props) => {
                     <Typography gutterBottom>
                         看甚麼看
                     </Typography>
-                    <Button onclick={() => props.setType(0)}> 我偏要看</Button><br/>
+                    <Button onClick={() => {props.setType(0);console.log("this is o",props.type)}}> 我偏要看</Button><br/>
                     <Typography gutterBottom>
                         還敢下來阿
                     </Typography>
-                    <Button onclick={() => props.setType(1)}>我就要下來</Button><br/>
+                    <Button onClick={() => props.setType(1)}>我就要下來</Button><br/>
                     <Typography gutterBottom>
                         我在飛呀
                     </Typography>
-                    <Button onclick={() => props.setType(2)}>飛你個頭</Button><br/>
+                    <Button onClick={() => props.setType(2)}>飛你個頭</Button><br/>
                 </DialogContent>
                 <DialogActions>
                     <Button autoFocus onClick={props.create} color="primary">

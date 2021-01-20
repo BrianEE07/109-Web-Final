@@ -54,8 +54,8 @@ const Monitor = (props) => {
             <div>This is {props.user}'s electric GG</div>
             <Grid className="moni_status">
                 <InsertEmoticonIcon className="moni_status_icon"/>
-            <Grid className="moni_status_icon">{props.life}%</Grid>
-                <img className="moni_status_bar" src={red[props.life/10]} />
+            <Grid className="moni_status_icon">{props.happiness}%</Grid>
+                <img className="moni_status_bar" src={red[props.happiness/10]} />
             </Grid>
             <Grid className="moni_status">
                 <FavoriteIcon className="moni_status_icon"/>

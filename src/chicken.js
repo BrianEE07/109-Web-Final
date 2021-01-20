@@ -37,8 +37,8 @@ const ChickenFW = (props) => {
         let x = Math.round((props.foodposarr[0][0] - props.chickensize) / 2);
         if (x < 0) 
             x = 0;
-        else if (x >= (props.width) / 2 - props.chickensize)
-            x = (props.width) / 2 - props.chickensize;
+        else if (x >= Math.round((props.width) / 2 - props.chickensize))
+            x = Math.round((props.width) / 2 - props.chickensize);
 
         if (props.positionX === x) {
             props.setState('eating')
@@ -94,8 +94,9 @@ const ChickenBW = (props) => {
         let x = Math.round((props.foodposarr[0][0] - props.chickensize) / 2);
         if (x < 0) 
             x = 0;
-        else if (x >= (props.width) / 2 - props.chickensize)
-            x = (props.width) / 2 - props.chickensize;
+        else if (x >= Math.round((props.width) / 2 - props.chickensize)) {
+            x = Math.round((props.width) / 2 - props.chickensize);
+        }
 
         if (props.positionX === x) {
             props.setState('eating')
@@ -150,7 +151,9 @@ const ChickenEAT = (props) => {
             newfoodposarr.shift()
             props.setFoodArr(newfoodarr)
             props.setFoodPosArr(newfoodposarr)
+            props.setHunger(props.hunger + 10)
             props.setState('forward')
+            // axios.get('/eating').then((res) => setHunger(res.data))
       }
   })
   
@@ -239,8 +242,10 @@ const Chicken = (props) => {
                 chickensize={Math.sqrt(props.height * props.width) / 10}
                 foodarr={foodarr}
                 foodposarr={foodposarr}
+                hunger={props.hunger}
                 setFoodArr={setFoodArr}
                 setFoodPosArr={setFoodPosArr}
+                setHunger={props.setHunger}
                 setState={setState}
             />
             );

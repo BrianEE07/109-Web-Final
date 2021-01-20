@@ -8,6 +8,8 @@ import Chicken from './chicken.js';
 import Monitor from './Monitor.js';
 import Interaction from './interaction.js';
 import bgm from './sound/titanic.mp3';
+// import { recieveStage, receiveHungerHealth } from './wsClient';
+import WSClient from "./wsClient";
 //...
 
 async function pauseMusic(){
@@ -39,34 +41,64 @@ const useStyles = makeStyles({
   }
 })
 function Game() {
+  const { wsmessage, sendFirstStart } = WSClient()
   const [user, setUser] = useState('范詠為');
   const [tabValue, setTabValue] = useState(0);
   const [foodpos, setFoodPos] = useState([]);
   const [inter, setInter] = useState(0);
-  const [life, setLife] = useState(90);
+  const [health, setHealth] = useState(100);
   const [hunger, setHunger] = useState(30);
-  const [health, setHealth] = useState(0);
+  const [happiness, setHappiness] = useState(90);
+  const [lifeTime, setLifeTime] = useState(0);
+  const [stage, setStage] = useState(0);
   const [houseHeight, setHouseHeight] = useState(0);
   const [houseWidth, setHouseWidth] = useState(0);
   const [muted, setMuted] = useState(false);
   const houseRef = useRef();
   const classes = useStyles();
 
-  //handle the BGM playing(invisible without 'controls' in <audio>)
+  // listen incoming wsMessage
+  useEffect(() => {
+    console.log(`Incomming message: { type: ${wsmessage.type}, value: ${wsmessage.value}`)
+    switch(wsmessage.type) {
+      case 'welcome':
+          sendFirstStart(wsmessage.value);
+          break;
+      case 'lifetime':
+          console.log(lifeTime);
+          setLifeTime(wsmessage.value);
+          break;
+      case 'stage':
+          setStage(wsmessage.value);
+          break;
+      case 'hunger':
+          setHunger(wsmessage.value);
+          break;
+      case 'health':
+          setHealth(wsmessage.value);
+          break;
+      case 'happiness':
+          setHappiness(wsmessage.value);
+          break;
+      default:
+          break;
+    }
+  }, [wsmessage])
+  // handle the BGM playing(invisible without 'controls' in <audio>)
   useEffect(() => {
     if(!muted)
     playMusic();
     else
     pauseMusic();
   },[muted])
-
+  // listen window resize event
   useEffect(() => {
     const updateHW = () => {
       setHouseHeight(houseRef.current.offsetHeight)
       setHouseWidth(houseRef.current.offsetWidth)
     }
     updateHW()
-    console.log('width:', {houseWidth},  'height:',  {houseHeight});
+    console.log(`width ${houseWidth},  height: ${houseHeight}`);
     window.addEventListener('resize', updateHW)
   }, [houseWidth, houseHeight])
 
@@ -78,10 +110,10 @@ function Game() {
   return (
     <div className="container_bg">
     <div className="container">
-      <Monitor user={user} health={health} hunger={hunger} life={life} setMuted={setMuted} muted={muted}/>
+      <Monitor user={user} health={health} hunger={hunger} happiness={happiness} setMuted={setMuted} muted={muted}/>
       <Grid className="visual_block">
         <Grid className="house" onClick={onClickScreen} ref={houseRef}>
-          <Chicken height={houseHeight} width={houseWidth} foodpos={foodpos} setFoodPos={setFoodPos}/>
+          <Chicken height={houseHeight} width={houseWidth} foodpos={foodpos} hunger={hunger} setFoodPos={setFoodPos} setHunger={setHunger}/>
         </Grid>
         <Interaction classes={classes} tabValue={tabValue} setTabValue={setTabValue}/>
       </Grid>

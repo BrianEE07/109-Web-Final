@@ -8,14 +8,50 @@ import mychickenBW from './img/mychicken/mychickenBW.png'
 import mychickenBWJson from './img/mychicken/mychickenBW.json'
 import mychickenEAT from './img/mychicken/mychickenEAT.png'
 import mychickenEATJson from './img/mychicken/mychickenEAT.json'
+import icebirdFW from './img/icebird/icebirdFW.png'
+import icebirdFWJson from './img/icebird/icebirdFW.json'
+import icebirdBW from './img/icebird/icebirdBW.png'
+import icebirdBWJson from './img/icebird/icebirdBW.json'
+import icebirdEAT from './img/icebird/icebirdEAT.png'
+import icebirdEATJson from './img/icebird/icebirdEAT.json'
+// import fatchickenFW from './img/fatchicken/fatchickenFW.png'
+// import fatchickenFWJson from './img/fatchicken/fatchickenFW.json'
+// import fatchickenBW from './img/fatchicken/fatchickenBW.png'
+// import fatchickenBWJson from './img/fatchicken/fatchickenBW.json'
+// import fatchickenEAT from './img/fatchicken/fatchickenEAT.png'
+// import fatchickenEATJson from './img/fatchicken/fatchickenEAT.json'
+// import mychicken_bigFW from './img/mychicken/mychickenFW.png'
+// import mychicken_bigFWJson from './img/mychicken/mychickenFW.json'
+// import mychicken_bigBW from './img/mychicken/mychickenBW.png'
+// import mychicken_bigBWJson from './img/mychicken/mychickenBW.json'
+// import mychicken_bigEAT from './img/mychicken/mychickenEAT.png'
+// import mychicken_bigEATJson from './img/mychicken/mychickenEAT.json'
+import icebird_bigFW from './img/icebird_big/icebird_bigFW.png'
+import icebird_bigFWJson from './img/icebird_big/icebird_bigFW.json'
+import icebird_bigBW from './img/icebird_big/icebird_bigBW.png'
+import icebird_bigBWJson from './img/icebird_big/icebird_bigBW.json'
+import icebird_bigEAT from './img/icebird_big/icebird_bigEAT.png'
+import icebird_bigEATJson from './img/icebird_big/icebird_bigEAT.json'
+// import fatchicken_bigFW from './img/fatchicken_big/fatchicken_bigFW.png'
+// import fatchicken_bigFWJson from './img/fatchicken_big/fatchicken_bigFW.json'
+// import fatchicken_bigBW from './img/fatchicken_big/fatchicken_bigBW.png'
+// import fatchicken_bigBWJson from './img/fatchicken_big/fatchicken_bigBW.json'
+// import fatchicken_bigEAT from './img/fatchicken_big/fatchicken_bigEAT.png'
+// import fatchicken_bigEATJson from './img/fatchicken_big/fatchicken_bigEAT.json'
+import littlebirdFW from './img/littlebird/littlebirdFW.png'
+import littlebirdFWJson from './img/littlebird/littlebirdFW.json'
+import littlebirdBW from './img/littlebird/littlebirdBW.png'
+import littlebirdBWJson from './img/littlebird/littlebirdBW.json'
+import littlebirdEAT from './img/littlebird/littlebirdEAT.png'
+import littlebirdEATJson from './img/littlebird/littlebirdEAT.json'
 
 // type 0 1 2 represent middlechicken type 3 4 5 represent largechicken  6 represent smallchicken
-const chickenFWList = [mychickenFW]
-const chickenFWJsonList = [mychickenFWJson]
-const chickenBWList = [mychickenBW]
-const chickenBWJsonList = [mychickenBWJson]
-const chickenEATList = [mychickenEAT]
-const chickenEATJsonList = [mychickenEATJson]
+const chickenFWList = [mychickenFW, icebirdFW, fatchickenFW, mychicken_bigFW, icebird_bigFW, fatchicken_bigFW, littlebirdFW]
+const chickenFWJsonList = [mychickenFWJson, icebirdFWJson, fatchickenFWJson, mychicken_bigFWJson, icebird_bigFWJson, fatchicken_bigFWJson, littlebirdFWJson]
+const chickenBWList = [mychickenBW, icebirdBW, fatchickenBW, mychicken_bigBW, icebird_bigBW, fatchicken_bigBW, littlebirdBW]
+const chickenBWJsonList = [mychickenBWJson, icebirdBWJson, fatchickenBWJson, mychicken_bigBWJson, icebird_bigBWJson, fatchicken_bigBWJson, littlebirdBWJson]
+const chickenEATList = [mychickenEAT, icebirdEAT, fatchickenEAT, icebird_bigEAT, mychicken_bigEAT, fatchicken_bigEAT, littlebirdEAT]
+const chickenEATJsonList = [mychickenEATJson, icebirdEATJson, fatchickenEATJson, mychicken_bigEATJson, icebird_bigEATJson, fatchicken_bigEATJson, littlebirdEATJson]
 
 // import {eaten} from './axios';
 
@@ -170,7 +206,7 @@ const ChickenEAT = (props) => {
   const [frames, setFrames] = useState([])
   const willMount = useRef(true);
   // const handlestatus = async() => {
-  //   const checkFull = await eaten(username);
+  //   const checkFull = await eat({username: props.user, hunger: props.hunger,health: props.health, message: 'return'});
 
   // }
   let counter = 0

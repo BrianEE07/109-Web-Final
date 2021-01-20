@@ -11,9 +11,8 @@ import GameOver from './gameover.js';
 import bgm from './sound/titanic.mp3';
 import WSClient from "./wsClient";
 
-// import ChooseChicken from './choosechicken.js';
-// import { set } from 'mongoose';
-// import {getUser, createChicken} from './axios';
+import ChooseChicken from './choosechicken.js';
+import {getUser, createChick} from './chicken/axios';
 
 
 async function pauseMusic(){
@@ -48,37 +47,36 @@ const useStyles = makeStyles({
 })
 function Game() {
 
-  const { wsmessage, sendFirstStart } = WSClient()
-  const [tabValue, setTabValue] = useState(0);
-  const [user, setUser] = useState('這個世界的神');
-  const [foodpos, setFoodPos] = useState([]);
-  const [hunger, setHunger] = useState(30);
-  const [health, setHealth] = useState(100);
-  const [happiness, setHappiness] = useState(90);
-  const [lifeTime, setLifeTime] = useState(0);
-  const [stage, setStage] = useState(0);
-  const [houseHeight, setHouseHeight] = useState(0);
-  const [houseWidth, setHouseWidth] = useState(0);
-  // const [openChooseChicken, setOpenChooseChicken] = useState(true)
-  const [muted, setMuted] = useState(false);
-  const [stage, setStage] = useState(1);
-  const [type, setType] = useState(0);
-  const [lifeTime, setLifeTime] = useState(0);
-  const houseRef = useRef();
-  const classes = useStyles();
-
+  const { wsmessage, sendGameStart, sendLogOut } = WSClient()
+  const [tabValue, setTabValue] = useState(0);     //
+  const [user, setUser] = useState('這個世界的神'); //user's name
+  const [foodpos, setFoodPos] = useState([]);      //food position
+  const [hunger, setHunger] = useState(30);        //hunger of chicken
+  const [health, setHealth] = useState(100);       //health of chicken
+  const [happiness, setHappiness] = useState(90);  //happiness of chicken
+  const [lifeTime, setLifeTime] = useState(0);     //how old is the chicken?
+  const [houseHeight, setHouseHeight] = useState(0);    //the size of animation
+  const [houseWidth, setHouseWidth] = useState(0);      //the size of animation
+  const [openChooseChicken, setOpenChooseChicken] = useState(true);  //open the choosechicken menu
+  const [muted, setMuted] = useState(false);        //is the BGM muted?
+  const [stage, setStage] = useState(1);            //evolution of chicken
+  const [type, setType] = useState(0);              //type of chicken
+  const houseRef = useRef();                        //house absolute position
+  const classes = useStyles();                      //handle some style
+  const logout = () => {
+    sendLogOut(user);
+  }
 
   // listen incoming wsMessage
   useEffect(() => {
     console.log(`Incomming message: { type: ${wsmessage.type}, value: ${wsmessage.value}`)
     switch(wsmessage.type) {
-      case 'welcome':
-          sendFirstStart(wsmessage.value);
-          break;
       case 'lifetime':
           console.log(lifeTime);
-          setLifeTime(wsmessage.value);
-          break;
+          if(stage != 3){
+            setLifeTime(wsmessage.value);
+          }
+            break;
       case 'stage':
           setStage(wsmessage.value);
           break;
@@ -97,22 +95,22 @@ function Game() {
   }, [wsmessage])
   // handle the BGM playing(invisible without 'controls' in <audio>)
 
-  // useEffect(async() => {
-  //   const data = await getUser();
-  //     setUser(data.account);
-  //     setHealth(data.health);
-  //     setHappiness(data.happiness);
-  //     setHunger(data.hunger);
-  //     setType(data.chicken);
-  //   if(type == 4){
-  //     setOpenChooseChicken(true);
-  //   }
-  // },[])
-  // const create = async() => {
-  //   await createChicken(type);
-  //   //叫范永為拿function來><><><><><><><><<><<><><><><><><><><<<<><><><><><<><<><
-  //   sendFirstStart(user);
-  // }
+  useEffect(async() => {
+    const data = await getUser();
+      setUser(data.account);
+      setHealth(data.health);
+      setHappiness(data.happiness);
+      setHunger(data.hunger);
+      setType(data.name);
+      sendGameStart(user);
+    if(type == 4){
+      setOpenChooseChicken(true);
+    }
+  },[])
+  const create = async() => {
+    await createChick({account: user, name: type});
+    //叫范永為拿function來><><><><><><><><<><<><><><><><><><><<<<><><><><><<><<><
+  }
   //handle the BGM playing(invisible without 'controls' in <audio>)
 
   useEffect(() => {
@@ -146,11 +144,11 @@ function Game() {
   return (
     <div className="container_bg">
     <div className="container">
-      {/* <ChooseChicken openChooseChicken={openChooseChicken} setType={setType} type={type} create={create}/> */}
-      <Monitor user={user} health={health} hunger={hunger} happiness={happiness} setMuted={setMuted} muted={muted} type={type} stage={stage} lifeTime={lifeTime}/>
+      <ChooseChicken openChooseChicken={openChooseChicken} setType={setType} type={type} create={create}/> user={user}
+      <Monitor user={user} health={health} hunger={hunger} happiness={happiness} setMuted={setMuted} muted={muted} type={type} stage={stage} lifeTime={lifeTime} logout={logout} />
       <Grid className="visual_block">
         <Grid className="house" onClick={onClickScreen} ref={houseRef}>
-          <GameOver stage={stage} restart={restart} lifeTime= {lifeTime}/>
+          <GameOver setOpenChooseChicken={setOpenChooseChicken} stage={stage} restart={restart} lifeTime= {lifeTime}/>
           <Chicken height={houseHeight} width={houseWidth} foodpos={foodpos} setFoodPos={setFoodPos} health={health} hunger={hunger} happiness={happiness} setHealth={setHealth} setHunger={setHunger} setHappiness={setHappiness} stage={stage} type={type}/>
         </Grid>
         <Interaction classes={classes} tabValue={tabValue} setTabValue={setTabValue}/>

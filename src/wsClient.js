@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 
 const client = new WebSocket('ws://localhost:4001')
 
-const wsClient = () => {
+const WSClient = () => {
     const [wsmessage, setWSMessage] = useState({})
 
     // receive Stage or Hun/Hp message
@@ -28,4 +28,4 @@ const wsClient = () => {
 }
 
 
-export default wsClient;
+export default WSClient;

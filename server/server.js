@@ -55,11 +55,12 @@ db.once('open', async () => {
     const account = "peter"
     const name = 0
     // await clearChDB();
-    const chick = await saveNewChicken(account, name, 100, 100, 180, t, 0, 0);
+    // const chick = await saveNewChicken(account, name, 100, 100, 180, t, 0, 0);
     // await getUser(account)
     // var t1 = today.getTime()
     // await printChDB();
-    // await updateHunger(account);
+    // await updateHunger(account, 20, "no return");
+    await updateLifeTime(account, 3);
     // await saveNewUser("", "", "", []);
     // await saveNewUser("brian_email", "brian", "brianpassword", []);
     // await saveNewUser("ray_email", "ray", "raypassword", []);

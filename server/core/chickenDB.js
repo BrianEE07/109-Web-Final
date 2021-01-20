@@ -27,7 +27,8 @@ const updateLifeTime = async (account, lifeTime) => {
 const updateStage = async (account, stage) => { 
     // const chicken = new Chicken({name, health, hunger, createTime}); 
     let msg = "";
-    let chicken = await Chicken({account: account})
+    let chicken = await Chicken.find({account: account})
+    console.log(chicken)
     let name = chicken[0].name
     if(stage === 3) name = 4
     await Chicken.update({"account": account}, {
@@ -88,7 +89,6 @@ const updateHunger = async (account, hunger, message) => {
 
         hunger = chicken[0].hunger
         health = chicken[0].health
-        let newChick = ''
         if(hunger >= 200){ health = health -  10; hunger = 200}
         else {hunger = hunger + 10}
     

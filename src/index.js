@@ -20,12 +20,20 @@ ReactDOM.render(
 //    <BrowserRouter>
 //     <Switch>
 
+<<<<<<< HEAD
 //      <Route exact path="/" component={App} />
 //      <Route path="/login" component={Login} />
 //      <Route path="/signup" component={SignUp} />
 //      <Route path="/game" component={Game} />
 //      <Route path="/setting" component={Setting}/>
 //      <Route path="/login" component={Login} />
+=======
+     <Route exact path="/" component={App} />
+     <Route path="/login" component={Login} />
+     <Route path="/signup" component={SignUp} />
+     <Route path="/game" component={Game} />
+     <Route path="/setting" component={Setting}/>
+>>>>>>> 77bb14f3c50f5c1edec5c905b8c3d8da80a882ed
 
 //    </Switch>
 //    </BrowserRouter>,

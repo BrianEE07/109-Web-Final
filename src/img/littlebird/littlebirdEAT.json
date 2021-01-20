@@ -1,0 +1,79 @@
+{"frames": {
+
+"littlebird11.png":
+{
+	"frame": {"x":640,"y":0,"w":321,"h":321},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":321,"h":321},
+	"sourceSize": {"w":321,"h":321}
+},
+"littlebird12.png":
+{
+	"frame": {"x":0,"y":0,"w":320,"h":320},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":320,"h":320},
+	"sourceSize": {"w":320,"h":320}
+},
+"littlebird13.png":
+{
+	"frame": {"x":0,"y":321,"w":321,"h":321},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":321,"h":321},
+	"sourceSize": {"w":321,"h":321}
+},
+"littlebird14.png":
+{
+	"frame": {"x":320,"y":0,"w":320,"h":320},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":320,"h":320},
+	"sourceSize": {"w":320,"h":320}
+},
+"littlebird15.png":
+{
+	"frame": {"x":321,"y":321,"w":333,"h":336},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":333,"h":336},
+	"sourceSize": {"w":333,"h":336}
+},
+"littlebird16.png":
+{
+	"frame": {"x":0,"y":657,"w":335,"h":338},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":335,"h":338},
+	"sourceSize": {"w":335,"h":338}
+},
+"littlebird17.PNG":
+{
+	"frame": {"x":654,"y":321,"w":333,"h":336},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":333,"h":336},
+	"sourceSize": {"w":333,"h":336}
+},
+"littlebird18.PNG":
+{
+	"frame": {"x":335,"y":657,"w":335,"h":338},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":335,"h":338},
+	"sourceSize": {"w":335,"h":338}
+}},
+"animations": {
+	"littlebird": ["littlebird11.png","littlebird12.png","littlebird13.png","littlebird14.png","littlebird15.png","littlebird16.png","littlebird17.PNG","littlebird18.PNG"]
+},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "littlebirdEAT.png",
+	"format": "RGBA8888",
+	"size": {"w":987,"h":995},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:7642730350e85b6bc7bcca01ccfb9f83:e0a509bddf1950e0d6a2af367252e154:f0eabab79d87b493603dd02827663636$"
+}
+}

@@ -1,0 +1,55 @@
+{"frames": {
+
+"littlebird6.png":
+{
+	"frame": {"x":0,"y":0,"w":321,"h":328},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":321,"h":328},
+	"sourceSize": {"w":321,"h":328}
+},
+"littlebird7.png":
+{
+	"frame": {"x":321,"y":0,"w":320,"h":330},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":320,"h":330},
+	"sourceSize": {"w":320,"h":330}
+},
+"littlebird8.png":
+{
+	"frame": {"x":641,"y":0,"w":321,"h":328},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":321,"h":328},
+	"sourceSize": {"w":321,"h":328}
+},
+"littlebird9.png":
+{
+	"frame": {"x":962,"y":0,"w":320,"h":330},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":320,"h":330},
+	"sourceSize": {"w":320,"h":330}
+},
+"littlebird10.png":
+{
+	"frame": {"x":1282,"y":0,"w":327,"h":332},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":327,"h":332},
+	"sourceSize": {"w":327,"h":332}
+}},
+"animations": {
+	"littlebird": ["littlebird6.png","littlebird7.png","littlebird8.png","littlebird9.png","littlebird10.png"]
+},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "littlebirdBW.png",
+	"format": "RGBA8888",
+	"size": {"w":1609,"h":332},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:a223351cab914c15f42c8659abd3f993:d74bddae4d73408f549343ddfe7436ea:a7642fa264ef6c73762c8764a8ed3134$"
+}
+}

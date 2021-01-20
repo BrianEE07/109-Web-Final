@@ -1,24 +1,28 @@
 import express from 'express';
-
 import cors from 'cors' 
 import bodyParser from 'body-parser';
 import homeRouter from './routes/chickens.js'; 
 import usersRouter from './routes/users.js';
 import mongoose from 'mongoose' 
 import dotenv from 'dotenv-defaults'
+import http from 'http';
+import WebSocket from 'ws';
+import GG from './game.js';
 // 之後拿掉
 import { saveNewUser, clearDB, printDB } from './core/userDB.js'
 import { saveNewChicken, printChDB, updateHunger, clearChDB, updateHealth, updateHappiness, getUser , updateLifeTime, updateStage, } from './core/chickenDB.js'
 // 之後拿掉
 const app = express();
+const server = http.createServer(app)
 const port = process.env.PORT || 4000
+const WSport = 4001
 app.use(cors())
 app.use(bodyParser.json());
 app.use('/chickens', homeRouter);
 app.use('/users', usersRouter);
-
-
 dotenv.config()
+
+const wss = new WebSocket.Server({ server });
 
 if (!process.env.MONGO_URL) { 
     console.error('Missing MONGO_URL!!!') 
@@ -74,6 +78,55 @@ db.once('open', async () => {
     await printChDB();
     
     // await printDB();
-    // console.log(t)
-    // console.log(t1)
+
+
+    console.log(t)
+    console.log(t1)
+    // WebSocket
+    wss.on('connection', (ws) => {
+        const sendData = (data) => {
+          ws.send(JSON.stringify(data))
+          console.log("data sent")
+        }
+        sendData({type: "welcome", value: 0})
+
+        ws.onmessage = (mes) => {
+          const { data } = mes;
+          const { message, account } = JSON.parse(data);
+          if (message === 'Initialize') {
+            console.log(`Initialize Chicken, user: ${account}`);
+            const username = account;
+            const lifetime = 0;
+            const stage = 0;
+            const health = 100;
+            const hunger = 100;
+            const happiness = 100;
+            const chicken = new GG(
+                // get all DB data of user 
+                username,
+                lifetime,
+                stage,
+                health,
+                hunger,
+                happiness
+            )
+            chicken.growUp(1, true, sendData);
+            chicken.gettingHungry(1, true, sendData);
+            // ws.onopen = () => {
+            //     console.log("isopen!")
+            //     chicken.growUp(1);
+            //     chicken.gettingHungry(1);
+            // }
+            ws.onclose = () => {
+                console.log("isclosed!")
+                chicken.clearInterval();
+                chicken.growUp(10, false, sendData);
+                chicken.gettingHungry(10, false, sendData);
+            } 
+          }
+        }
+    })
+    server.listen(WSport, () => {
+        console.log(`Websocket Listening on http://localhost:${WSport}`)
+      })
 });

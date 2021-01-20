@@ -1,6 +1,6 @@
 {"frames": {
 
-"icebird1.png":
+"icebird6.png":
 {
 	"frame": {"x":0,"y":0,"w":844,"h":604},
 	"rotated": false,
@@ -8,7 +8,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":844,"h":604},
 	"sourceSize": {"w":844,"h":604}
 },
-"icebird2.png":
+"icebird7.png":
 {
 	"frame": {"x":844,"y":0,"w":844,"h":604},
 	"rotated": false,
@@ -16,7 +16,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":844,"h":604},
 	"sourceSize": {"w":844,"h":604}
 },
-"icebird3.png":
+"icebird8.png":
 {
 	"frame": {"x":0,"y":604,"w":844,"h":604},
 	"rotated": false,
@@ -24,7 +24,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":844,"h":604},
 	"sourceSize": {"w":844,"h":604}
 },
-"icebird4.png":
+"icebird9.png":
 {
 	"frame": {"x":844,"y":604,"w":844,"h":604},
 	"rotated": false,
@@ -32,24 +32,24 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":844,"h":604},
 	"sourceSize": {"w":844,"h":604}
 },
-"icebird5.png":
+"icebird10.png":
 {
-	"frame": {"x":0,"y":1208,"w":844,"h":623},
+	"frame": {"x":0,"y":1208,"w":843,"h":623},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":844,"h":623},
-	"sourceSize": {"w":844,"h":623}
+	"spriteSourceSize": {"x":0,"y":0,"w":843,"h":623},
+	"sourceSize": {"w":843,"h":623}
 }},
 "animations": {
-	"icebird": ["icebird1.png","icebird2.png","icebird3.png","icebird4.png","icebird5.png"]
+	"icebird": ["icebird6.png","icebird7.png","icebird8.png","icebird9.png","icebird10.png"]
 },
 "meta": {
 	"app": "https://www.codeandweb.com/texturepacker",
 	"version": "1.0",
-	"image": "icebird.png",
+	"image": "icebirdBW.png",
 	"format": "RGBA8888",
 	"size": {"w":1688,"h":1831},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:c1cce4890d0786e5604e29670fc91466:b60364a74609c5e6e30a579de5d2a223:a88252c920cef9ea241bd075d10f7514$"
+	"smartupdate": "$TexturePacker:SmartUpdate:7749b180473c6772e5a963e474836726:9b438b34e591f8e17b13721fba5a6a72:d3da8d668af741be61b776de574203eb$"
 }
 }

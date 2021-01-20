@@ -58,7 +58,7 @@ db.once('open', async () => {
     // const account = localStorage.getItem('')
     const account = "peter"
     const name = 0
-    await clearChDB();
+    // await clearChDB();
     // const chick = await saveNewChicken(account, name, 100, 100, 180, t, 0, 0);
     // await getUser(account)
     // var t1 = today.getTime()

@@ -46,33 +46,26 @@ const updateStage = async (account, stage) => {
                 if (err.errors && err.errors.chicken && err.errors.chicken.kind === 'unique') {
                     msg = `New Chicken \"${account}\" duplicate`;
                 }
-                // else if (err.errors && err.errors.account && err.errors.account.kind === 'unique') {
-                //     msg = `Account \"${account}\" duplicate`;
-                // }
-                // else {
-                //     msg = 'Something wrong when register...';
-                //     console.error(err);
-                // }
                 console.log(msg); 
             }) 
     return msg;
 }
-const updateHealth = async (name, health) => { 
+const updateHealth = async (account, health) => { 
     // const chicken = new Chicken({name, health, hunger, createTime}); 
     let msg = "";
-    await Chicken.update({"name": name}, {
+    await Chicken.update({"account": account}, {
         $set: {
           health: health,
         //   createTime: updateTime,
         }
       })
             .then(() => {
-                msg = `New Chicken ${name} updated`;
+                msg = `New Chicken ${account} updated`;
                 console.log(msg); 
             })
             .catch(err => {
                 if (err.errors && err.errors.chicken && err.errors.chicken.kind === 'unique') {
-                    msg = `New Chicken \"${name}\" duplicate`;
+                    msg = `New Chicken \"${account}\" duplicate`;
                 }
                 console.log(msg); 
             }) 

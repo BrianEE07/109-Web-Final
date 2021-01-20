@@ -79,38 +79,48 @@ db.once('open', async () => {
         }
         sendData({type: "welcome", value: 0})
 
-        ws.onmessage = (mes) => {
+        ws.onmessage = async (mes) => {
           const { data } = mes;
           const { message, account } = JSON.parse(data);
-          if (message === 'Initialize') {
-            console.log(`Initialize Chicken, user: ${account}`);
-            const username = account;
-            const lifetime = 0;
-            const stage = 0;
-            const health = 100;
-            const hunger = 100;
-            const happiness = 100;
+          if (message === 'Login') {
+            const userdata = await getUser( { account: account } );
+            console.log(`User: ${userdata[0].account} login, getting chicken...`);
+            console.log(`Initial data: lifetime: ${userdata[0].lifeTime}, stage: ${userdata[0].stage}, health: ${userdata[0].health}, hunger: ${userdata[0].hunger}, happiness: ${userdata[0].happiness}`);
             const chicken = new GG(
                 // get all DB data of user 
-                username,
-                lifetime,
-                stage,
-                health,
-                hunger,
-                happiness
+                userdata[0].account,
+                userdata[0].lifeTime,
+                userdata[0].stage,
+                userdata[0].health,
+                userdata[0].hunger,
+                userdata[0].happiness
             )
-            chicken.growUp(1, true, sendData);
-            chicken.gettingHungry(1, true, sendData);
-            // ws.onopen = () => {
-            //     console.log("isopen!")
-            //     chicken.growUp(1);
-            //     chicken.gettingHungry(1);
-            // }
+            if (chicken.stage !== 3) { // chicken is still alive.
+                chicken.growUp(1, true, sendData);
+                chicken.gettingHungry(1, true, sendData);
+                // chicken.gettingSad(1, true, sendData);
+                chicken.recoverHealth(false, sendData);
+            }
+            // if connection close or logout, update slowly and store to db without send to frontend 
+            ws.onmessage = (m) => {
+                const { data: d } = m;
+                const { mess , acc} = JSON.parse(d);
+                if (mess === 'Logout') {
+                    console.log(`User: ${userdata[0].account} logout...`);
+                    chicken.clearInterval();
+                    chicken.growUp(10, false, sendData);
+                    chicken.gettingHungry(10, false, sendData);
+                    // chicken.gettingSad(10, false, sendData);
+                    chicken.recoverHealth(false, sendData);
+                }
+            }
             ws.onclose = () => {
-                console.log("isclosed!")
+                console.log(`User: ${userdata[0].account} lost connection...`);
                 chicken.clearInterval();
                 chicken.growUp(10, false, sendData);
                 chicken.gettingHungry(10, false, sendData);
+                // chicken.gettingSad(10, false, sendData);
+                chicken.recoverHealth(false, sendData);
             } 
           }
         }

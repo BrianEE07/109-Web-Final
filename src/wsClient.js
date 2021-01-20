@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 
 const client = new WebSocket('ws://localhost:4001')
 
-const wsClient = () => {
+const WSClient = () => {
     const [wsmessage, setWSMessage] = useState({})
 
     // receive Stage or Hun/Hp message
@@ -17,15 +17,20 @@ const wsClient = () => {
         client.send(JSON.stringify(data));
     }
     
-    const sendFirstStart = (account) => {
-        sendData({message: "Initialize", account: account});
+    const sendGameStart = (account) => {
+        sendData({message: "Login", account: account});
+    }
+
+    const sendLogOut = (account) => {
+        sendDate({message: "Logout", account: account});
     }
 
     return {
         wsmessage,
-        sendFirstStart
+        sendGameStart,
+        sendLogOut
     }
 }
 
 
-export default wsClient;
+export default WSClient;

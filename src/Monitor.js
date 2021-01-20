@@ -1,13 +1,11 @@
 import './App.css'
-import { Link } from 'react-router-dom';
 import React, { useEffect, useRef, useState } from 'react'
 import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 import RestaurantMenuIcon from '@material-ui/icons/RestaurantMenu';
+import SettingDrawer from './settingdrawer';
 import chicken2 from "./img/monitor/chicken2.png";
-import SettingsIcon from '@material-ui/icons/Settings';
 import redbar_0 from "./img/status_bar/bar_0.png";
 import redbar_10 from "./img/status_bar/redbar_10.png";
 import redbar_20 from "./img/status_bar/redbar_20.png";
@@ -51,16 +49,19 @@ const Monitor = (props) => {
     return(
         <Grid className="moniter">
             <img className="moni_logo" src={chicken2}/>
-            <div>This is {props.user}'s electric GG</div>
-            <Grid className="moni_status">
-                <InsertEmoticonIcon className="moni_status_icon"/>
-            <Grid className="moni_status_icon">{props.life}%</Grid>
-                <img className="moni_status_bar" src={red[props.life/10]} />
-            </Grid>
+            <div className="moni_user">This is {props.user}'s<br/> 
+                electric  GG<br/>
+                {'<-----------------'}<br/>
+            </div>
             <Grid className="moni_status">
                 <FavoriteIcon className="moni_status_icon"/>
             <Grid className="moni_status_icon">{props.health}%</Grid>
-                <img className="moni_status_bar" src={green[props.health/10]}/>
+                <img className="moni_status_bar" src={red[props.health/10]}/>
+            </Grid>
+            <Grid className="moni_status">
+                <InsertEmoticonIcon className="moni_status_icon"/>
+            <Grid className="moni_status_icon">{props.happiness}%</Grid>
+                <img className="moni_status_bar" src={green[props.happiness/10]} />
             </Grid>
             <Grid className="moni_status">
                 <RestaurantMenuIcon className="moni_status_icon"/>
@@ -71,16 +72,7 @@ const Monitor = (props) => {
                 <img className="moni_mute_icon" src="https://www.flaticon.com/svg/static/icons/svg/727/727240.svg"/>
                 <input className="moni_mute_button" type="checkbox" onClick={() => setMuted(!muted)}/>
           </Grid>
-            <Link to="/setting">
-            <Button
-                variant="contained"
-                color="primary"
-                startIcon={<SettingsIcon />}
-                className="set_back_button"
-              >
-                Setting
-              </Button>
-            </Link>
+            <SettingDrawer health={props.health} happiness={props.happiness} hunger={props.hunger} user={props.user} stage={props.stage} type={props.type} lifeTime={props.lifeTime}  />
         </Grid>
     )
 }

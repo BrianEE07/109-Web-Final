@@ -60,7 +60,7 @@ function Login() {
   // console.log(localStorage.getItem("checked"))
   // console.log(rememberedAccount)
   const [account, setAccount] = useState("q");
-  const [password, setPassword] = useState();
+  const [password, setPassword] = useState("q");
   const [error, setError] = useState({target: "", type: ""});
   const [isLogin, setIsLogin] = useState(false);
   const [checked, setChecked] = useState(false);
@@ -122,7 +122,7 @@ function Login() {
           // const chicken = await createChick("fat", 'firstTime')
           console.log("this is ", account)
           localStorage.setItem("account", account)
-          await createChick({account: account, name: 4})
+          // await createChick({account: account, name: 4})
           // console.log(chicken)
           setIsLogin(true);
           console.log("Login SSSSSUUUUUCCCCCCEEEEESSSSS!!!!!");

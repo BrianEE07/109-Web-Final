@@ -75,7 +75,7 @@ const Monitor = (props) => {
             </Grid>
             <Grid className="moni_status">
                 <RestaurantMenuIcon className="moni_status_icon"/>
-                <Grid className="moni_status_icon">{props.hunger}%</Grid>
+                <Grid className="moni_status_icon">{handleHungerStatus(props.hunger)}%</Grid>
                 <img className="moni_status_bar" src={blue[handleHungerStatus(props.hunger)/10]}/>
             </Grid>
             <Grid className="moni_mute">

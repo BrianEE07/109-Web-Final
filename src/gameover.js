@@ -52,7 +52,7 @@ const styles = (theme) => ({
   }))(MuiDialogActions);
 
 const GameOver = (props) => {
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = React.useState(props.over);
         useEffect(() => {
             if(props.stage == 3)
             setOpen(true)

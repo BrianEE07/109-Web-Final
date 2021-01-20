@@ -22,7 +22,7 @@ const WSClient = () => {
     }
 
     const sendLogOut = (account) => {
-        sendDate({message: "Logout", account: account});
+        sendData({message: "Logout", account: account});
     }
 
     return {

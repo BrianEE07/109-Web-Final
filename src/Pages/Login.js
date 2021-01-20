@@ -12,9 +12,11 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Chicken from '../img/login/chicken.png';
+import Chicken from '../img/login//chicken.png';
 import { useHistory } from "react-router-dom";
 import { checkUser, useAuthState, useAuthDispatch } from '../Context' 
+import {createChick} from  '../chicken/axios.js'
+
 
 
 function Copyright() {
@@ -53,12 +55,12 @@ const useStyles = makeStyles((theme) => ({
 
 function Login() {
   const classes = useStyles();
-  
-  const rememberedAccount = localStorage.getItem("checked") === true ? localStorage.account : ""
-  console.log(localStorage.getItem("checked"))
-  console.log(rememberedAccount)
-  const [account, setAccount] = useState("");
-  const [password, setPassword] = useState("");
+  // 
+  // const rememberedAccount = localStorage.getItem("checked") === true ? localStorage.account : ""
+  // console.log(localStorage.getItem("checked"))
+  // console.log(rememberedAccount)
+  const [account, setAccount] = useState("q");
+  const [password, setPassword] = useState();
   const [error, setError] = useState({target: "", type: ""});
   const [isLogin, setIsLogin] = useState(false);
   const [checked, setChecked] = useState(false);
@@ -74,7 +76,7 @@ function Login() {
   const handleCheck = () => {
     setChecked(!checked);
     console.log(checked)
-    localStorage.setItem("checked", checked)
+    // localStorage.setItem("checked", checked)
   }
   const handleError = () => {
     if (account === "") {
@@ -116,6 +118,12 @@ function Login() {
         setError({target: "", type: ""});
       }
       if (msg === "Login Successfully!!"){
+        console.log('hewertyutrewertytrewrtyu')
+          // const chicken = await createChick("fat", 'firstTime')
+          console.log("this is ", account)
+          localStorage.setItem("account", account)
+          await createChick({account: account, name: 4})
+          // console.log(chicken)
           setIsLogin(true);
           console.log("Login SSSSSUUUUUCCCCCCEEEEESSSSS!!!!!");
           redirect();

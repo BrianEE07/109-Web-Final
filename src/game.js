@@ -39,7 +39,7 @@ const useStyles = makeStyles({
   }
 })
 function Game() {
-  const [user, setUser] = useState('范詠為');
+  const [user, setUser] = useState('林宏軒');
   const [tabValue, setTabValue] = useState(0);
   const [foodpos, setFoodPos] = useState([]);
   const [inter, setInter] = useState(0);
@@ -59,7 +59,9 @@ function Game() {
     else
     pauseMusic();
   },[muted])
-
+useEffect(() => {
+  console.log(localStorage.getItem("account"))
+}, [])
   useEffect(() => {
     const updateHW = () => {
       setHouseHeight(houseRef.current.offsetHeight)

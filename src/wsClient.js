@@ -17,13 +17,18 @@ const WSClient = () => {
         client.send(JSON.stringify(data));
     }
     
-    const sendFirstStart = (account) => {
-        sendData({message: "Initialize", account: account});
+    const sendGameStart = (account) => {
+        sendData({message: "Login", account: account});
+    }
+
+    const sendLogOut = (account) => {
+        sendDate({message: "Logout", account: account});
     }
 
     return {
         wsmessage,
-        sendFirstStart
+        sendGameStart,
+        sendLogOut
     }
 }
 

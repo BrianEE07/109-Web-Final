@@ -59,8 +59,8 @@ function Login() {
   // const rememberedAccount = localStorage.getItem("checked") === true ? localStorage.account : ""
   // console.log(localStorage.getItem("checked"))
   // console.log(rememberedAccount)
-  const [account, setAccount] = useState("q");
-  const [password, setPassword] = useState("q");
+  const [account, setAccount] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState({target: "", type: ""});
   const [isLogin, setIsLogin] = useState(false);
   const [checked, setChecked] = useState(false);

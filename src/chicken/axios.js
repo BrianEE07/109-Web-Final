@@ -23,7 +23,7 @@ const lifelong = async ({name, hp, updateTime}) => {
 const createChick = async ({account, name}) => {
     console.log(window.localStorage.getItem("account"))
   //  if(m)
-    const health = 100
+    const health = 70
     const happiness = 100
     const hunger = 90
     const createTime = new Date().getTime()

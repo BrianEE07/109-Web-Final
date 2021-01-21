@@ -103,7 +103,7 @@ function Game() {
     if(data.length === 0){
       setUser(window.localStorage.getItem("account"));
       console.log('hewkfhewifeiwlvjil:' , data, user)
-      setHealth(100);
+      setHealth(70);
       setHappiness(100);
       setHunger(90);
       setStage(0);
@@ -122,6 +122,7 @@ function Game() {
       sendGameStart(user);
     }
   },[user])
+  console.log(user)
   const create = async() => {
     console.log("typeeeee", type)
     console.log("user: ", user)

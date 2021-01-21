@@ -10,7 +10,8 @@ import MuiDialogActions from '@material-ui/core/DialogActions';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
-import deadchicken from './img/deadchicken/deadchicken.png';
+import deadchicken from './img/deadchicken/deadchicken.PNG';
+// import { clearChDB } from '../server/core/chickenDB';
 const styles = (theme) => ({
     root: {
       margin: 0,
@@ -78,9 +79,6 @@ const GameOver = (props) => {
             </Typography>
           </DialogContent>
           <DialogActions>
-            <Button autoFocus onClick={() => { setOpen(false);props.setOpenChooseChicken(true);}} color="secondary"><br/>
-              Select a new chicken!
-            </Button>
           </DialogActions>
           <DialogActions>
             <Link to='/login'>

@@ -21,10 +21,10 @@ class GG {
             updateLifeTime(this.username, this.lifetime)
 
             // stage from 0 to 3, 3 is die
-            if (this.lifetime >= 30 && this.lifetime < 60) {
+            if (this.lifetime >= 15 && this.lifetime < 30) {
                 this.stage = 1; 
             }
-            else if (this.lifetime >= 60 && this.lifetime < 1200) {
+            else if (this.lifetime >= 30 && this.lifetime < 1200) {
                 this.stage = 2; 
             }
             else if (this.lifetime >= 1200) {
@@ -82,7 +82,7 @@ class GG {
                 sendData({type: 'health', value: this.health});
                 sendData({type: 'stage', value: this.stage});
             }
-        }, 20000 * timescale)
+        }, 6000 * timescale)
     }
 
     // gettingSad =  (timescale, sendtofront, sendData) => {
@@ -138,7 +138,7 @@ class GG {
                     sendData({type: 'health', value: this.health});
                 }
             }
-        }, 10000)
+        }, 2000)
     }
 
     clearInterval = () => {

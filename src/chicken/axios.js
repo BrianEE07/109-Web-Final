@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const instance = axios.create({ baseURL: 'https://myappname.herokuapp.com//chickens' })
+const instance = axios.create({ baseURL: 'http://wss://myappname.herokuapp.com/chickens' })
 
 const eat = async ({account, hunger, health, message}) => {
   console.log(account, hunger, health, message)

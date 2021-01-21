@@ -28,7 +28,7 @@ import bluebar_70 from "./img/status_bar/bluebar_70.png";
 import bluebar_80 from "./img/status_bar/bluebar_80.png";
 import bluebar_90 from "./img/status_bar/bluebar_90.png";
 import bluebar_100 from "./img/status_bar/bluebar_100.png";
-import purplebar from "./img/status_bar/purplebar.PNG";
+import purplebar from "./img/status_bar/purplebar.png";
 import greenbar_0 from "./img/status_bar/bar_0.png";
 import greenbar_10 from "./img/status_bar/greenbar_10.png";
 import greenbar_20 from "./img/status_bar/greenbar_20.png";

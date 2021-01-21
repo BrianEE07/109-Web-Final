@@ -86,7 +86,7 @@ db.once('open', async () => {
     wss.on('connection', (ws) => {
         const sendData = (data) => {
           ws.send(JSON.stringify(data))
-          console.log("data sent")
+        //   console.log("data sent")
         }
         sendData({type: "welcome", value: 0})
 
@@ -94,7 +94,7 @@ db.once('open', async () => {
           const { data } = mes;
           const { message, account } = JSON.parse(data);
           if (message === 'Login') {
-            const userdata = await getUser( { account: account } );
+            const userdata = await getUser(account);
             console.log(`User: ${userdata[0].account} login, getting chicken...`);
             console.log(`Initial data: lifetime: ${userdata[0].lifeTime}, stage: ${userdata[0].stage}, health: ${userdata[0].health}, hunger: ${userdata[0].hunger}, happiness: ${userdata[0].happiness}`);
             const chicken = new GG(

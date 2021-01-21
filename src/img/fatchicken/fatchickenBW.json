@@ -6,8 +6,7 @@
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":543,"h":472},
-	"sourceSize": {"w":543,"h":472},
-	"anchor": {"x":0.5,"y":0.5}
+	"sourceSize": {"w":543,"h":472}
 },
 "fatchicken2BW.png":
 {
@@ -15,8 +14,7 @@
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":510,"h":474},
-	"sourceSize": {"w":510,"h":474},
-	"anchor": {"x":0.5,"y":0.5}
+	"sourceSize": {"w":510,"h":474}
 }},
 "meta": {
 	"app": "https://www.codeandweb.com/texturepacker",

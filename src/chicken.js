@@ -22,12 +22,12 @@ import fatchickenBW from './img/fatchicken/fatchickenBW.png'
 import fatchickenBWJson from './img/fatchicken/fatchickenBW.json'
 import fatchickenEAT from './img/fatchicken/fatchickenEAT.png'
 import fatchickenEATJson from './img/fatchicken/fatchickenEAT.json'
-import mychicken_bigFW from './img/mychicken/mychickenFW.png'
-import mychicken_bigFWJson from './img/mychicken/mychickenFW.json'
-import mychicken_bigBW from './img/mychicken/mychickenBW.png'
-import mychicken_bigBWJson from './img/mychicken/mychickenBW.json'
-import mychicken_bigEAT from './img/mychicken/mychickenEAT.png'
-import mychicken_bigEATJson from './img/mychicken/mychickenEAT.json'
+import mychicken_bigFW from './img/mychicken_big/mychicken_bigFW.png'
+import mychicken_bigFWJson from './img/mychicken_big/mychicken_bigFW.json'
+import mychicken_bigBW from './img/mychicken_big/mychicken_bigBW.png'
+import mychicken_bigBWJson from './img/mychicken_big/mychicken_bigBW.json'
+import mychicken_bigEAT from './img/mychicken_big/mychicken_bigEAT.png'
+import mychicken_bigEATJson from './img/mychicken_big/mychicken_bigEAT.json'
 import icebird_bigFW from './img/icebird_big/icebird_bigFW.png'
 import icebird_bigFWJson from './img/icebird_big/icebird_bigFW.json'
 import icebird_bigBW from './img/icebird_big/icebird_bigBW.png'
@@ -53,7 +53,7 @@ const chickenFWList = [mychickenFW, icebirdFW, fatchickenFW, mychicken_bigFW, ic
 const chickenFWJsonList = [mychickenFWJson, icebirdFWJson, fatchickenFWJson, mychicken_bigFWJson, icebird_bigFWJson, fatchicken_bigFWJson, littlebirdFWJson]
 const chickenBWList = [mychickenBW, icebirdBW, fatchickenBW, mychicken_bigBW, icebird_bigBW, fatchicken_bigBW, littlebirdBW]
 const chickenBWJsonList = [mychickenBWJson, icebirdBWJson, fatchickenBWJson, mychicken_bigBWJson, icebird_bigBWJson, fatchicken_bigBWJson, littlebirdBWJson]
-const chickenEATList = [mychickenEAT, icebirdEAT, fatchickenEAT, icebird_bigEAT, mychicken_bigEAT, fatchicken_bigEAT, littlebirdEAT]
+const chickenEATList = [mychickenEAT, icebirdEAT, fatchickenEAT, mychicken_bigEAT, icebird_bigEAT, fatchicken_bigEAT, littlebirdEAT]
 const chickenEATJsonList = [mychickenEATJson, icebirdEATJson, fatchickenEATJson, mychicken_bigEATJson, icebird_bigEATJson, fatchicken_bigEATJson, littlebirdEATJson]
 
 
@@ -252,11 +252,12 @@ const ChickenEAT = (props) => {
       
   }
 
-  useTick( async (delta) => {
+  useTick(  (delta) => {
       counter += delta;
       
        
-      if (counter >= 100) {
+      if (counter >= 50) {
+
             const newfoodarr = [...props.foodarr]
             const newfoodposarr = [...props.foodposarr]
             newfoodarr.shift() // remove first element

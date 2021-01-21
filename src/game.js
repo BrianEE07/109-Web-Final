@@ -65,9 +65,9 @@ function Game() {
   const [over, setOver] = useState(false);
   const houseRef = useRef();                        //house absolute position
   const classes = useStyles();                      //handle some style
-  // const logout = () => {
-  //   sendLogOut(user);
-  // }
+  const logout = () => {
+    sendLogOut(user);
+  }
 
   // listen incoming wsMessage
   useEffect(() => {
@@ -105,10 +105,9 @@ function Game() {
       console.log('hewkfhewifeiwlvjil:' , data, user)
       setHealth(100);
       setHappiness(100);
-      setHunger(180);
+      setHunger(90);
       setStage(0);
       setOpenChooseChicken(true);
-      // sendGameStart(user);
       
     }else {
     console.log("data ", data[0])
@@ -120,15 +119,14 @@ function Game() {
       setHunger(data[0].hunger);
       setType(data[0].name);
       setStage(data[0].stage);
-      
       sendGameStart(user);
     }
-  },[])
+  },[user])
   const create = async() => {
     console.log("typeeeee", type)
     console.log("user: ", user)
     await createChick({account: user, name: type});
-    //叫范永為拿function來><><><><><><><><<><<><><><><><><><><<<<><><><><><<><<><
+    sendGameStart(user);
   }
   //handle the BGM playing(invisible without 'controls' in <audio>)
   
@@ -165,8 +163,8 @@ console.log("type: ", type)
     <div className="container_bg">
     <div className="container">
       <ChooseChicken openChooseChicken={openChooseChicken} setType={setType} type={type} create={create} user={user}/> 
-  {/*<Monitor user={user} health={health} hunger={hunger} happiness={happiness} setMuted={setMuted} muted={muted} type={type} stage={stage} lifeTime={lifeTime} logout={logout} />*/}
-      <Monitor user={user} health={health} hunger={hunger} happiness={happiness} setMuted={setMuted} muted={muted} type={type} stage={stage} lifeTime={lifeTime} />
+  <Monitor user={user} health={health} hunger={hunger} happiness={happiness} setMuted={setMuted} muted={muted} type={type} stage={stage} lifeTime={lifeTime} logout={logout} />
+      
       <Grid className="visual_block">
         <Grid className="house" onClick={onClickScreen} ref={houseRef}>
           <GameOver over={over} stage={stage} restart={restart} lifeTime= {lifeTime}/>

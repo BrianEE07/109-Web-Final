@@ -15,7 +15,7 @@ import { saveNewChicken, printChDB, updateHunger, clearChDB, updateHealth, updat
 const app = express();
 const server = http.createServer(app)
 const port = process.env.PORT || 4000
-const WSport = 4001
+const WSport = process.env.PORT || 4001
 app.use(cors())
 app.use(bodyParser.json());
 app.use('/chickens', homeRouter);

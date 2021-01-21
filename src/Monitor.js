@@ -5,7 +5,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 import RestaurantMenuIcon from '@material-ui/icons/RestaurantMenu';
 import SettingDrawer from './settingdrawer';
-import chicken2 from "./img/monitor/chicken2.png";
+import logo from "./img/monitor/logo.png";
 import redbar_0 from "./img/status_bar/bar_0.png";
 import redbar_10 from "./img/status_bar/redbar_10.png";
 import redbar_20 from "./img/status_bar/redbar_20.png";
@@ -28,7 +28,7 @@ import bluebar_70 from "./img/status_bar/bluebar_70.png";
 import bluebar_80 from "./img/status_bar/bluebar_80.png";
 import bluebar_90 from "./img/status_bar/bluebar_90.png";
 import bluebar_100 from "./img/status_bar/bluebar_100.png";
-import purplebar from "./img/status_bar/purplebar.png";
+import purplebar from "./img/status_bar/purplebar.PNG";
 import greenbar_0 from "./img/status_bar/bar_0.png";
 import greenbar_10 from "./img/status_bar/greenbar_10.png";
 import greenbar_20 from "./img/status_bar/greenbar_20.png";
@@ -57,7 +57,7 @@ const Monitor = (props) => {
     } 
     return(
         <Grid className="moniter">
-            <img className="moni_logo" src={chicken2}/>
+            <img className="moni_logo" src={logo}/>
 
             <div className="moni_user">{props.user}, welcome!<br/> 
                 your GG is now<br/>

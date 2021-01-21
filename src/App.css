@@ -1,5 +1,18 @@
 .App {
   text-align: center;
+  cursor: none;
+}
+
+.cursor {
+  width: 40px;
+  height: 40px;
+  border: 2px solid #fefefe;
+  border-radius: 100%;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
 }
 
 .container_bg {
@@ -36,15 +49,15 @@
 }
 
 .moni_logo {
-  width: 5vw;
-  height: 5vw;
+  width: 15%;
+  height: 100%;
 }
 
 .moni_user {
-  width: 10%;
+  width: 8%;
   height: 100%;
   text-align: center;
-  margin-left: -2%;
+  margin-left: 0%;
 }
 
 .moni_name {
@@ -59,7 +72,7 @@
 .moni_status {
   margin-left: 2.5%;
   height: 80%;
-  width: 15%;
+  width: 13%;
   background-color: #F8E261;
   outline: black;
   display: flex;
@@ -236,6 +249,9 @@ button {
 }
 
 /*-----------------------------------------------------------*/
+
+
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

@@ -2,7 +2,7 @@
 // import axios from "../Pages/axios"
 import axios from 'axios'
 
-const instance = axios.create({ baseURL: 'http://localhost:4000/users' })
+const instance = axios.create({ baseURL: 'https://chickenkeeper.herokuapp.com/users' })
 
 export default async function checkUser(dispatch, LoginPayload) {
   

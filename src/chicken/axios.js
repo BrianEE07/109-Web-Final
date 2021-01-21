@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const instance = axios.create({ baseURL: 'http://wss://myappname.herokuapp.com/chickens' })
+const instance = axios.create({ baseURL: 'http://localhost:4000/chickens' })
 
 const eat = async ({account, hunger, health, message}) => {
   console.log(account, hunger, health, message)
@@ -23,7 +23,7 @@ const lifelong = async ({name, hp, updateTime}) => {
 const createChick = async ({account, name}) => {
     console.log(window.localStorage.getItem("account"))
   //  if(m)
-    const health = 100
+    const health = 70
     const happiness = 100
     const hunger = 90
     const createTime = new Date().getTime()

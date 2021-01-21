@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const instance = axios.create({ baseURL: 'https://chickenkeeper.herokuapp.com/users' })
+const instance = axios.create({ baseURL: 'https://chickenskeeper.herokuapp.com/users' })
 
 const checkUser = async ({account, password}) => {
   const { data : msg } = await instance.post('/login', {account, password})

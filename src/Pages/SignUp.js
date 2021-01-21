@@ -112,6 +112,7 @@ function SignUp(props) {
     if (handleError()) return;
     let chicken = []
     let payload = {email, account, password, chicken}
+    window.localStorage.setItem("account", account)
     try {
         let msg = await signUp(dispatch, payload) //loginUser action makes the request and handles all the neccessary state changes
         if (handleMsgError(msg)) return;

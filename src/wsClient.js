@@ -1,7 +1,7 @@
 import './App.css';
 import React, { useEffect, useRef, useState } from 'react';
 
-const client = new WebSocket('ws://localhost:4001')
+const client = new WebSocket('ws://chickenkeeper.herokuapp.com/')
 
 const WSClient = () => {
     const [wsmessage, setWSMessage] = useState({})

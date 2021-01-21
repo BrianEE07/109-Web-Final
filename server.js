@@ -75,7 +75,7 @@ db.once('open', async () => {
     // await printChDB();
     // await updateHappiness("peter", 3000, t1);
 
-    await printChDB();
+    // await printChDB();
     
     // await printDB();
 

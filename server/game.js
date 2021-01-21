@@ -18,13 +18,13 @@ class GG {
             this.lifetime += 1;
             console.log(`${this.username}'s lifetime: ${this.lifetime}`)
             // send lifetime to DB
-            updateLifeTime({account: this.username, lifeTime: this.lifetime})
+            updateLifeTime(this.username, this.lifetime)
 
             // stage from 0 to 3, 3 is die
-            if (this.lifetime >= 120 && this.lifetime < 360) {
+            if (this.lifetime >= 30 && this.lifetime < 60) {
                 this.stage = 1; 
             }
-            else if (this.lifetime >= 360 && this.lifetime < 1200) {
+            else if (this.lifetime >= 60 && this.lifetime < 1200) {
                 this.stage = 2; 
             }
             else if (this.lifetime >= 1200) {
@@ -37,7 +37,7 @@ class GG {
             }
             console.log(`${this.username}'s stage: ${this.stage}`)
             // send stage to DB
-            updateStage({account: this.username, stage: this.stage});
+            updateStage(this.username, this.stage);
             // send to frontend 
             if (sendtofront) {
                 sendData({type: 'lifetime', value: this.lifetime});
@@ -48,14 +48,14 @@ class GG {
 
     gettingHungry =  (timescale, sendtofront, sendData) => {
         this.id2 = setInterval(async () => {
-            const userdata = await getUser( { account: this.username } );
+            const userdata = await getUser(this.username);
             this.hunger = userdata[0].hunger;
             this.health = userdata[0].health;
             if (this.hunger === 0) {
                 if (this.health === 0) {
                     this.stage = 3;
                     // send stage to DB
-                    updateStage({account: this.username, stage: this.stage});
+                    updateStage(this.username, this.stage);
                     console.log(`${this.username}'s stage: ${this.stage}`)
                     console.log(`starving, gg died.`)
                     clearInterval(this.id1);
@@ -66,7 +66,7 @@ class GG {
                 else {
                     this.health -= 10;
                     // send health to DB
-                    updateHealth({account: this.username, health: this.health});
+                    updateHealth(this.username, this.health);
                 }
                 console.log(`${this.username}'s health: ${this.health}`)
             }
@@ -74,7 +74,7 @@ class GG {
                 this.hunger -= 10;
                 console.log(`${this.username}'s hunger: ${this.hunger}`)
                 // send hunger to DB
-                updateHunger({account: this.username, hunger: this.hunger, message: "no return"});
+                updateHunger(this.username, this.hunger, "no return");
             }
             // send to frontend 
             if (sendtofront) { 
@@ -87,14 +87,14 @@ class GG {
 
     // gettingSad =  (timescale, sendtofront, sendData) => {
     //     this.id3 = setInterval(async () => {
-    //         const userdata = await getUser( { account: this.username } );
+    //         const userdata = await getUser(this.username);
     //         this.happiness = userdata[0].happiness;
     //         this.health = userdata[0].health;
     //         if (this.happiness === 0) {
     //             if (this.health === 0) {
     //                 this.stage = 3;
     //                 // send stage to DB
-    //                 updateStage({account: this.username, stage: this.stage});
+    //                 updateStage(this.username, this.stage);
     //                 console.log(`${this.username}'s stage: ${this.stage}`)
     //                 console.log(`crying, gg died.`)
     //                 clearInterval(this.id1);
@@ -105,7 +105,7 @@ class GG {
     //             else {
     //                 this.health -= 10;
     //                 // send health to DB
-    //                 updateHealth({account: this.username, health: this.health});
+    //                 updateHealth(this.username, this.health);
     //             }
     //             console.log(`${this.username}'s health: ${this.health}`)
     //         }
@@ -113,7 +113,7 @@ class GG {
     //             this.happiness -= 10;
     //             console.log(`${this.username}'s happiness: ${this.happiness}`)
     //             // send happiness to DB
-    //             // updateHappiness({account: this.username, happiness: this.happiness, message: "no return"});
+    //             // updateHappiness(this.username, this.happiness, "no return"});
     //         }
     //         // send to frontend 
     //         if (sendtofront) { 
@@ -126,14 +126,14 @@ class GG {
 
     recoverHealth =  (sendtofront, sendData) => {
         this.id4 = setInterval(async () => {
-            const userdata = await getUser( { account: this.username } );
+            const userdata = await getUser(this.username);
             this.hunger = userdata[0].hunger;
             this.happiness = userdata[0].happiness;
             this.health = userdata[0].health;
-            if (this.hunger >= 90 && this.happiness >= 90 && this.health <= 100) {
+            if (this.hunger >= 90 && this.happiness >= 90 && this.health <= 90) {
                 this.health += 10;
                 // send health to DB
-                updateHealth({account: this.username, health: this.health});
+                updateHealth(this.username, this.health);
                 if (sendtofront) {
                     sendData({type: 'health', value: this.health});
                 }

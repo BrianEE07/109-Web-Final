@@ -12,6 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import LiveHelpOutlinedIcon from '@material-ui/icons/LiveHelpOutlined';
 import yellowbird_1 from './img/mychicken/mychicken1.png';
 import icebird_1 from './img/icebird/icebird1.png';
+import {Link} from 'react-router-dom';
 const styles = (theme) => ({
     root: {
       margin: 0,
@@ -97,9 +98,11 @@ const SettingDrawer = (props) => {
             </Typography>
           </DialogContent>
           <DialogActions>
+          <Link to="/login">
             <Button autoFocus onClick={props.logout} color="primary">
               Log out
             </Button>
+          </Link>
           </DialogActions>
         </Dialog>
       </div>

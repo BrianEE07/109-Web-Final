@@ -13,8 +13,19 @@ import { saveNewUser, clearDB, printDB } from './core/userDB.js'
 import { saveNewChicken, printChDB, updateHunger, clearChDB, updateHealth, updateHappiness, getUser , updateLifeTime, updateStage, } from './core/chickenDB.js'
 // 之後拿掉
 const app = express();
+const path = require('path');
+var port = process.env.PORT || 80;
+
+app.use(express.static(path.join(__dirname, '')));
+app.get('/', function (req, res) { 
+    res.sendfile(__dirname + '/index.html'); 
+});
+
+app.listen(port, function() {
+    console.log("Listening on Port 3000");
+});
 const server = http.createServer(app)
-const port = process.env.PORT || 4000
+// const port = process.env.PORT || 4000
 const WSport = 4001
 app.use(cors())
 app.use(bodyParser.json());
